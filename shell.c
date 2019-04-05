@@ -7,6 +7,8 @@ void shell(void)
 	char *buffer = NULL;
 	char **args;
 	int len, check, j, i = 0;
+	char *temp;
+	char *PATH = "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:";
 
 	while (1)
 	{
@@ -21,10 +23,11 @@ void shell(void)
 		}
 		buffer[len - 1] = 0;
 		args = splitString(buffer);
+		temp = check_path(args[0], PATH);
 		f1 = fork();
 		if (f1 == 0)
 		{
-			check = execve(args[0], args, NULL);
+			check = execve(temp, args, NULL);
 			if (check == -1)
 			{
 				write(STDOUT_FILENO, "command not found\n", 18);

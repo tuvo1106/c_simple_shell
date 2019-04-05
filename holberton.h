@@ -19,5 +19,6 @@ int _strlen(char *s);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
+char *check_path(char *input, char *path);
 
 #endif
