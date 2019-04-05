@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 
+void shell(void);
 _Bool isSpace(char c);
 unsigned int countWords(char *s);
 char **split(char *str);

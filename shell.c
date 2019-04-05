@@ -1,6 +1,6 @@
 #include "holberton.h"
 
-int main(void)
+void shell(void)
 {
 	pid_t f1;
 	size_t n = 0;
