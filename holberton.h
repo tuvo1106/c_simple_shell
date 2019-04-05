@@ -8,11 +8,12 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 
 void shell(void);
 _Bool isSpace(char c);
 unsigned int countWords(char *s);
-char **split(char *str);
+char **splitString(char *str);
 void print_tab(char **tab);
 int _strlen(char *s);
 char *_strdup(char *str);

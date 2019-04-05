@@ -17,10 +17,10 @@ void shell(void)
 		{
 			free(buffer);
 			write(STDOUT_FILENO, "\n", 1);
-			return (0);
+			return;
 		}
 		buffer[len - 1] = 0;
-		args = split(buffer);
+		args = splitString(buffer);
 		f1 = fork();
 		if (f1 == 0)
 		{
