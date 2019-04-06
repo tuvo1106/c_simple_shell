@@ -6,7 +6,7 @@
  */
 void shell(char *path)
 {
-	register int len, check, i = 0;
+	register int len, childStatus, lineCounter = 0;
 	pid_t f1;
 	size_t n = 0;
 	char *buffer = NULL, *fullPath = NULL;
@@ -14,14 +14,14 @@ void shell(char *path)
 
 	while (true)
 	{
-		i++;
+		lineCounter++;
 		write(STDOUT_FILENO, "$ ", 2);
 		len = getline(&buffer, &n, stdin);
 		if (len < 0)
 		{
 			free(buffer);
 			write(STDOUT_FILENO, "\n", 1);
-			return;
+			exit(0);
 		}
 		insertNullByte(buffer, len - 1);
 		args = splitString(buffer);
@@ -29,12 +29,12 @@ void shell(char *path)
 		f1 = fork();
 		if (f1 == 0)
 		{
-			check = (fullPath)
+			childStatus = (fullPath)
 				? execve(fullPath, args, NULL)
 				: execve(args[0], args, NULL);
-			if (check == -1)
+			if (childStatus == -1)
 			{
-				errorHandler("./shell", i, buffer);
+				errorHandler("./shell", lineCounter, buffer);
 				free(buffer);
 				freeArgs(args);
 				exit(0);
