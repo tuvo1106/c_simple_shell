@@ -1,19 +1,20 @@
 #include "holberton.h"
 
+/**
+ * shell - simple shell
+ * @path: string of $PATH
+ */
 void shell(char *path)
 {
+	register int len, check, i = 0;
 	pid_t f1;
 	size_t n = 0;
-	char *buffer = NULL;
+	char *buffer = NULL, *fullPath = NULL;
 	char **args;
-	int len, check, j, i = 0;
-	char *temp;
-	_Bool showPrompt = true;
 
-	while (showPrompt)
+	while (true)
 	{
 		i++;
-		j = 0;
 		write(STDOUT_FILENO, "$ ", 2);
 		len = getline(&buffer, &n, stdin);
 		if (len < 0)
@@ -22,22 +23,20 @@ void shell(char *path)
 			write(STDOUT_FILENO, "\n", 1);
 			return;
 		}
-		buffer[len - 1] = 0;
+		insertNullByte(buffer, len - 1);
 		args = splitString(buffer);
-		temp = check_path(args[0], path);
+		fullPath = check_path(args[0], path);
 		f1 = fork();
 		if (f1 == 0)
 		{
-			check = (temp)
-				? execve(temp, args, NULL)
+			check = (fullPath)
+				? execve(fullPath, args, NULL)
 				: execve(args[0], args, NULL);
 			if (check == -1)
 			{
 				errorHandler("./shell", i, buffer);
 				free(buffer);
-				while (args[j])
-					free(args[j++]);
-				free(args);
+				freeArgs(args);
 				exit(0);
 			}
 
@@ -45,9 +44,7 @@ void shell(char *path)
 		else
 		{
 			wait(NULL);
-			while (args[j])
-				free(args[j++]);
-			free(args);
+			freeArgs(args);
 		}
 	}
 	free(buffer);

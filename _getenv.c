@@ -1,17 +1,22 @@
 #include "holberton.h"
 
+/**
+ * _getenv - retrieves env variable that matches input string
+ * @input: input string
+ * @environ: local environmental variables
+ * Return: string of env variable
+ */
 char *_getenv(char *input, char **environ)
 {
-	char *tok;
-	char *right;
-	int i = 0;
+	register int i = 0;
+	char *tok, *right;
 
 	while (environ[i])
 	{
 		tok = strtok(environ[i], "=");
 		if (_strcmp(tok, input) == 0)
 		{
-			right = strtok(NULL,"=");
+			right = strtok(NULL, "=");
 			return (right);
 		}
 		i++;

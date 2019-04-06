@@ -1,44 +1,58 @@
 #include "holberton.h"
 
+/**
+ * isSpace - determines if char is a space
+ * @c: input char
+ * Return: true or false
+ */
 _Bool isSpace(char c)
 {
 	return (c == ' ');
 }
 
-unsigned int countWords(char *s)
+/**
+ * countWords - count number of words in a string
+ * @str: input string
+ * Return: number of words
+ */
+unsigned int countWords(char *str)
 {
-	int wordOn = false;
-	int words = 0;
+	register int words = 0;
+	_Bool wordOn = false;
 
-	while (*s)
+	while (*str)
 	{
-		if (isSpace(*s) && wordOn)
+		if (isSpace(*str) && wordOn)
 			wordOn = false;
-		else if (!isSpace(*s) && !wordOn)
+		else if (!isSpace(*str) && !wordOn)
 		{
 			wordOn = true;
 			words++;
 		}
-		s++;
+		str++;
 	}
 	return (words);
 }
 
+/**
+ * splitString - splits string into an array of strings
+ * separated by spaces
+ * @str: input string
+ * Return: array of strings
+ */
 char **splitString(char *str)
 {
-	char *cpy = _strdup(str);
+	register unsigned int i = 0;
+	char *tok, *cpy = _strdup(str);
 	char **res;
-	char *tok;
-	unsigned int i = 0;
 
-	res = malloc((countWords(str) + 1) * 8);
+	res = malloc((countWords(str) + 1) * sizeof(char *));
 	if (!res)
 	{
 		free(cpy);
 		return (NULL);
 	}
 	tok = strtok(cpy, " ");
-
 	while (tok != NULL)
 	{
 		res[i] = _strdup(tok);

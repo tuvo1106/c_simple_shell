@@ -1,54 +1,65 @@
 #include "holberton.h"
 
-void errorHandler(char *f, int n, char *cmd)
+/**
+ * errorHandler - prints error message for shell()
+ * @filename: filename of shell
+ * @num: nth command entered into shell
+ * @cmd: command that could not be executed
+ */
+void errorHandler(char *filename, int num, char *cmd)
 {
-	static char error[100];
-	int len;
+	register int len;
+	static char error[BUFSIZE];
 	char *alpha;
 
-	alpha = itoa(n);
-	len = strlen(f) + strlen(alpha) + strlen(cmd) + 2 + 2 + 12;
-	strcat(error, f);
+	alpha = itoa(num);
+	len = strlen(filename) + strlen(alpha) + strlen(cmd) + 2 + 2 + 12;
+	strcat(error, filename);
 	strcat(error, ": ");
 	strcat(error, alpha);
 	strcat(error, ": ");
 	strcat(error, cmd);
 	strcat(error, ": not found\n");
-	error[len] = 0;
-	write(1, error, len);
+	insertNullByte(error, len);
+	write(STDOUT_FILENO, error, len);
 	free(alpha);
 }
 
+/**
+ * countDigits - count number of digits in a number
+ * @num: input number
+ * Return: number of digits
+ */
 unsigned int countDigits(int num)
 {
-	int digits = 0;
+	register int digits = 0;
 
 	while (num > 0)
 	{
 		digits++;
 		num /= 10;
 	}
-
 	return (digits);
 }
 
-
+/**
+ * itoa - converts integer to string
+ * @num: input integer
+ * Return: string type of number
+ */
 char *itoa(unsigned int num)
 {
+	register int digits = 0;
 	char *str;
-	int digits = 0;
 
 	digits += countDigits(num);
 	str = malloc(sizeof(char) * (digits + 1));
-
-	str[digits] = '\0';
-
+	insertNullByte(str, digits);
 	while (num > 0)
 	{
 		str[digits - 1] = num % 10 + '0';
 		num = num / 10;
 		digits--;
 	}
-
 	return (str);
 }

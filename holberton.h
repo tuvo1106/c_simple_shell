@@ -10,6 +10,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#define BUFSIZE 256
+
 void shell(char *);
 _Bool isSpace(char c);
 unsigned int countWords(char *s);
@@ -24,5 +26,7 @@ char *_getenv(char *input, char **environ);
 void errorHandler(char *f, int n, char *cmd);
 unsigned int countDigits(int num);
 char *itoa(unsigned int num);
+void insertNullByte(char *str, unsigned int index);
+void freeArgs(char **args);
 
 #endif

@@ -1,33 +1,35 @@
 #include "holberton.h"
 
+/**
+ * check_path - searches $PATH for directory of command
+ * @input: input command
+ * @path: input $PATH
+ * Return: string of full pathname if found, NULL if not
+ */
 char *check_path(char *input, char *path)
 {
-	static char buff[256];
-	char *copy = _strdup(path);
-	char *delim = ":";
-	char *ptr;
-	int size;
+	register int len;
+	static char buffer[BUFSIZE];
+	char *tok, *copy = _strdup(path), *delim = ":";
 	struct stat st;
 
-	if (stat(input, &st) == 0)
+	if (!stat(input, &st))
 		return (input);
-	ptr = strtok(copy, delim);
-	while (ptr != NULL)
+	tok = strtok(copy, delim);
+	while (tok)
 	{
-
-		size = _strlen(ptr) + _strlen(input) + 2;
-		_strcat(buff, ptr);
-		_strcat(buff, "/");
-		_strcat(buff, input);
-		buff[size - 1] = 0;
-		if (stat(buff, &st) == 0)
+		len = _strlen(tok) + _strlen(input) + 2;
+		_strcat(buffer, tok);
+		_strcat(buffer, "/");
+		_strcat(buffer, input);
+		insertNullByte(buffer, len - 1);
+		if (stat(buffer, &st) == 0)
 		{
 			free(copy);
-			return (buff);
+			return (buffer);
 		}
-		buff[0] = 0;
-		fflush(stdin);
-		ptr = strtok(NULL, delim);
+		insertNullByte(buffer, 0);
+		tok = strtok(NULL, delim);
 	}
 	free(copy);
 	return (NULL);
