@@ -4,7 +4,7 @@
  * shell - simple shell
  * @path: string of $PATH
  */
-void shell(char *PATH)
+void shell(char *PATH, char **ENVIRON)
 {
 	register int len, childStatus, lineCounter = 0;
 	pid_t f1;
@@ -32,8 +32,8 @@ void shell(char *PATH)
 		if (f1 == 0)
 		{
 			childStatus = fullPath
-				? execve(fullPath, args, NULL)
-				: execve(args[0], args, NULL);
+				? execve(fullPath, args, ENVIRON)
+				: execve(args[0], args, ENVIRON);
 			if (childStatus == -1)
 			{
 				errorHandler("./shell", lineCounter, buffer);

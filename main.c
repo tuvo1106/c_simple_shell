@@ -14,6 +14,6 @@ int main(int ac, char **av, char **environ)
 	(void)av;
 	char *PATH = _getenv("PATH", environ);
 
-	shell(PATH);
+	shell(PATH, environ);
 	return (0);
 }

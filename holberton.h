@@ -12,7 +12,7 @@
 
 #define BUFSIZE 256
 
-void shell(char *);
+void shell(char *, char **);
 _Bool isSpace(char c);
 unsigned int countWords(char *s);
 char **splitString(char *str);
