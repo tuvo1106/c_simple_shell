@@ -13,11 +13,6 @@ char *checkPath(char *input, char *path)
 	char *tok, *copy = _strdup(path), *delim = ":";
 	struct stat st;
 
-	if (!stat(input, &st))
-	{
-		free(copy);
-		return (input);
-	}
 	tok = strtok(copy, delim);
 	while (tok)
 	{
@@ -33,6 +28,11 @@ char *checkPath(char *input, char *path)
 		}
 		insertNullByte(buffer, 0);
 		tok = strtok(NULL, delim);
+	}
+	if (!stat(input, &st))
+	{
+		free(copy);
+		return (input);
 	}
 	free(copy);
 	return (NULL);
