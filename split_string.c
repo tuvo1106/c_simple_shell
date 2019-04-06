@@ -32,6 +32,11 @@ char **splitString(char *str)
 	unsigned int i = 0;
 
 	res = malloc((countWords(str) + 1) * 8);
+	if (!res)
+	{
+		free(cpy);
+		return (NULL);
+	}
 	tok = strtok(cpy, " ");
 
 	while (tok != NULL)

@@ -2,9 +2,9 @@
 
 char *check_path(char *input, char *path)
 {
+	static char buff[256];
 	char *copy = _strdup(path);
 	char *delim = ":";
-	char *buff;
 	char *ptr;
 	int size;
 	struct stat st;
@@ -14,16 +14,21 @@ char *check_path(char *input, char *path)
 	ptr = strtok(copy, delim);
 	while (ptr != NULL)
 	{
+
 		size = _strlen(ptr) + _strlen(input) + 2;
-		buff = malloc(size);
 		_strcat(buff, ptr);
 		_strcat(buff, "/");
 		_strcat(buff, input);
 		buff[size - 1] = 0;
 		if (stat(buff, &st) == 0)
+		{
+			free(copy);
 			return (buff);
-		free(buff);
+		}
+		buff[0] = 0;
+		fflush(stdin);
 		ptr = strtok(NULL, delim);
 	}
+	free(copy);
 	return (NULL);
 }
