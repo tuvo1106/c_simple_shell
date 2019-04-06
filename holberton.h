@@ -28,5 +28,8 @@ unsigned int countDigits(int num);
 char *itoa(unsigned int num);
 void insertNullByte(char *str, unsigned int index);
 void freeArgs(char **args);
+void welcome_screen_1(void);
+void welcome_screen_2(void);
+
 
 #endif
