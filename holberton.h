@@ -12,6 +12,11 @@
 
 #define BUFSIZE 256
 
+typedef struct builtInCommands {
+	char *command;
+	void func();
+} builtIns;
+
 void shell(char *, char **);
 _Bool isSpace(char c);
 unsigned int countWords(char *s);
