@@ -1,12 +1,12 @@
 #include "holberton.h"
 
 /**
- * check_path - searches $PATH for directory of command
+ * checkPath - searches $PATH for directory of command
  * @input: input command
  * @path: input $PATH
  * Return: string of full pathname if found, NULL if not
  */
-char *check_path(char *input, char *path)
+char *checkPath(char *input, char *path)
 {
 	register int len;
 	static char buffer[BUFSIZE];
@@ -14,7 +14,10 @@ char *check_path(char *input, char *path)
 	struct stat st;
 
 	if (!stat(input, &st))
+	{
+		free(copy);
 		return (input);
+	}
 	tok = strtok(copy, delim);
 	while (tok)
 	{

@@ -4,11 +4,11 @@
  * shell - simple shell
  * @path: string of $PATH
  */
-void shell(char *path)
+void shell(char *PATH)
 {
 	register int len, childStatus, lineCounter = 0;
 	pid_t f1;
-	size_t n = 0;
+	size_t bufferSize = 0;
 	char *buffer = NULL, *fullPath = NULL;
 	char **args;
 
@@ -16,7 +16,7 @@ void shell(char *path)
 	{
 		lineCounter++;
 		write(STDOUT_FILENO, "$ ", 2);
-		len = getline(&buffer, &n, stdin);
+		len = getline(&buffer, &bufferSize, stdin);
 		if (len < 0)
 		{
 			free(buffer);
@@ -25,11 +25,11 @@ void shell(char *path)
 		}
 		insertNullByte(buffer, len - 1);
 		args = splitString(buffer);
-		fullPath = check_path(args[0], path);
+		fullPath = checkPath(args[0], PATH);
 		f1 = fork();
 		if (f1 == 0)
 		{
-			childStatus = (fullPath)
+			childStatus = fullPath
 				? execve(fullPath, args, NULL)
 				: execve(args[0], args, NULL);
 			if (childStatus == -1)
@@ -39,7 +39,6 @@ void shell(char *path)
 				freeArgs(args);
 				exit(0);
 			}
-
 		}
 		else
 		{

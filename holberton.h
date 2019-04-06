@@ -21,7 +21,7 @@ int _strlen(char *s);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
-char *check_path(char *input, char *path);
+char *checkPath(char *input, char *path);
 char *_getenv(char *input, char **environ);
 void errorHandler(char *f, int n, char *cmd);
 unsigned int countDigits(int num);
