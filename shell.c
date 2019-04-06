@@ -13,6 +13,7 @@ void shell(char *path)
 	while (showPrompt)
 	{
 		i++;
+		j = 0;
 		write(STDOUT_FILENO, "$ ", 2);
 		len = getline(&buffer, &n, stdin);
 		if (len < 0)
@@ -34,6 +35,9 @@ void shell(char *path)
 			{
 				errorHandler("./shell", i, buffer);
 				free(buffer);
+				while (args[j])
+					free(args[j++]);
+				free(args);
 				exit(0);
 			}
 
@@ -41,13 +45,9 @@ void shell(char *path)
 		else
 		{
 			wait(NULL);
-			j = 0;
 			while (args[j])
-			{
-				free(args[j]);
-				j++;
-			}
-			free(args[j]);
+				free(args[j++]);
+			free(args);
 		}
 	}
 	free(buffer);
