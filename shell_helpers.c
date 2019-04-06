@@ -6,10 +6,10 @@
  */
 void freeArgs(char **args)
 {
-	register int i = 0;
+	register unsigned int index = 0;
 
-	while (args[i])
-		free(args[i++]);
+	while (args[index])
+		free(args[index++]);
 	free(args);
 }
 
@@ -20,7 +20,7 @@ void freeArgs(char **args)
  */
 void insertNullByte(char *str, unsigned int index)
 {
-	*(str + index) = '\0';
+	str[index] = '\0';
 }
 
 

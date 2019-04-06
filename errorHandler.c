@@ -13,7 +13,7 @@ void errorHandler(char *filename, int num, char *cmd)
 	char *alpha;
 
 	alpha = itoa(num);
-	len = strlen(filename) + strlen(alpha) + strlen(cmd) + 2 + 2 + 12;
+	len = _strlen(filename) + _strlen(alpha) + _strlen(cmd) + 2 + 2 + 12;
 	strcat(error, filename);
 	strcat(error, ": ");
 	strcat(error, alpha);
@@ -43,7 +43,7 @@ unsigned int countDigits(int num)
 }
 
 /**
- * itoa - converts integer to string
+ * _itoa - converts integer to string
  * @num: input integer
  * Return: string type of number
  */

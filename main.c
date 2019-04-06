@@ -9,8 +9,11 @@
  */
 int main(int ac, char **av, char **environ)
 {
-	char *path = _getenv("PATH", environ);
 
-	shell(path);
+	(void)ac;
+	(void)av;
+	char *PATH = _getenv("PATH", environ);
+
+	shell(PATH);
 	return (0);
 }

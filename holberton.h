@@ -16,7 +16,6 @@ void shell(char *);
 _Bool isSpace(char c);
 unsigned int countWords(char *s);
 char **splitString(char *str);
-void print_tab(char **tab);
 int _strlen(char *s);
 char *_strdup(char *str);
 char *_strcat(char *dest, char *src);
