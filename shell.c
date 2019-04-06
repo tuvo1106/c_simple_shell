@@ -15,12 +15,14 @@ void shell(char *PATH)
 	while (true)
 	{
 		lineCounter++;
-		write(STDOUT_FILENO, "$ ", 2);
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
 		len = getline(&buffer, &bufferSize, stdin);
 		if (len < 0)
 		{
 			free(buffer);
-			write(STDOUT_FILENO, "\n", 1);
+			if (isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
 		insertNullByte(buffer, len - 1);
