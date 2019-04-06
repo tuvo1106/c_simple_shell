@@ -27,6 +27,8 @@ void shell(char *PATH, char **ENVIRON)
 		}
 		insertNullByte(buffer, len - 1);
 		args = splitString(buffer);
+		if (args == NULL)
+			continue;
 		fullPath = checkPath(args[0], PATH);
 		f1 = fork();
 		if (f1 == 0)

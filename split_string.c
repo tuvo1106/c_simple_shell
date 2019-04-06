@@ -43,15 +43,15 @@ unsigned int countWords(char *str)
 char **splitString(char *str)
 {
 	register unsigned int i = 0;
-	char *tok, *cpy = _strdup(str);
+	char *tok, *cpy;
 	char **res;
 
+	if (countWords(str) == 0)
+		return (NULL);
 	res = malloc((countWords(str) + 1) * sizeof(char *));
 	if (!res)
-	{
-		free(cpy);
 		return (NULL);
-	}
+	cpy = _strdup(str);
 	tok = strtok(cpy, " ");
 	while (tok != NULL)
 	{
