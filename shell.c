@@ -16,7 +16,7 @@ void shell(char *PATH, char **ENVIRON)
 	{
 		lineCounter++;
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "$ ", 2);
+			displayPrompt();
 		len = getline(&buffer, &bufferSize, stdin);
 		if (len < 0)
 		{

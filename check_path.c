@@ -10,11 +10,12 @@ char *checkPath(char *input, char *path)
 {
 	register int len;
 	static char buffer[BUFSIZE];
-	char *tok, *copy = _strdup(path), *delim = ":";
+	char *tok, *copy, *delim = ":";
 	struct stat st;
 
+	copy = _strdup(path);
 	tok = strtok(copy, delim);
-	while (tok)
+	while (tok && *copy != ':')
 	{
 		len = _strlen(tok) + _strlen(input) + 2;
 		_strcat(buffer, tok);
@@ -29,7 +30,7 @@ char *checkPath(char *input, char *path)
 		insertNullByte(buffer, 0);
 		tok = strtok(NULL, delim);
 	}
-	if (!stat(input, &st))
+	if (stat(input, &st) == 0)
 	{
 		free(copy);
 		return (input);

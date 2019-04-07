@@ -23,4 +23,7 @@ void insertNullByte(char *str, unsigned int index)
 	str[index] = '\0';
 }
 
-
+void displayPrompt(void)
+{
+	write(STDOUT_FILENO, "$ ", 2);
+}

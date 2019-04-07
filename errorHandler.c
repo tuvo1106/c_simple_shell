@@ -43,7 +43,7 @@ unsigned int countDigits(int num)
 }
 
 /**
- * _itoa - converts integer to string
+ * itoa - converts integer to string
  * @num: input integer
  * Return: string type of number
  */
