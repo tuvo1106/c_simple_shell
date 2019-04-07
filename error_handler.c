@@ -54,6 +54,11 @@ char *itoa(unsigned int num)
 
 	digits += countDigits(num);
 	str = malloc(sizeof(char) * (digits + 1));
+	if (!str)
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
 	insertNullByte(str, digits);
 	while (num > 0)
 	{

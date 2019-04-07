@@ -2,7 +2,8 @@
 
 /**
  * shell - simple shell
- * @path: string of $PATH
+ * @PATH: string of $PATH
+ * @ENVIRON: array of environ variables
  */
 void shell(char *PATH, char **ENVIRON)
 {
@@ -22,7 +23,7 @@ void shell(char *PATH, char **ENVIRON)
 		{
 			free(buffer);
 			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
+				displayNewLine();
 			exit(0);
 		}
 		insertNullByte(buffer, len - 1);
@@ -38,7 +39,7 @@ void shell(char *PATH, char **ENVIRON)
 				: execve(args[0], args, ENVIRON);
 			if (childStatus == -1)
 			{
-				errorHandler("./shell", lineCounter, buffer);
+				errorHandler(HSH, lineCounter, buffer);
 				free(buffer);
 				freeArgs(args);
 				exit(0);

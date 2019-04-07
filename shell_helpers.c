@@ -6,7 +6,7 @@
  */
 void freeArgs(char **args)
 {
-	register unsigned int index = 0;
+	register uint index = 0;
 
 	while (args[index])
 		free(args[index++]);
@@ -23,7 +23,31 @@ void insertNullByte(char *str, unsigned int index)
 	str[index] = '\0';
 }
 
+/**
+ * displayPrompt - displays shell prompt
+ */
 void displayPrompt(void)
 {
 	write(STDOUT_FILENO, "$ ", 2);
+}
+
+/**
+ * displayNewLine - displays new line
+ */
+void displayNewLine(void)
+{
+	write(STDOUT_FILENO, "\n", 1);
+}
+
+/**
+ * sigintHandler - catches SIGINT signal and reset signal
+ * @sigint: signal from stdout
+ */
+void sigintHandler(int sigint)
+{
+	(void)sigint;
+	signal(SIGINT, sigintHandler);
+	displayNewLine();
+	displayPrompt();
+	fflush(stdout);
 }

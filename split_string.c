@@ -1,13 +1,41 @@
 #include "holberton.h"
 
 /**
- * isSpace - determines if char is a space
- * @c: input char
- * Return: true or false
+ * splitString - splits string into an array of strings
+ * separated by spaces
+ * @str: input string
+ * Return: array of strings
  */
-_Bool isSpace(char c)
+char **splitString(char *str)
 {
-	return (c == ' ');
+	register unsigned int i = 0;
+	char *tok, *cpy;
+	char **res;
+
+	if (countWords(str) == 0)
+		return (NULL);
+	res = malloc((countWords(str) + 1) * sizeof(char *));
+	if (!res)
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
+	cpy = _strdup(str);
+	if (!cpy)
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
+	tok = _strtok(cpy, " ");
+	while (tok != NULL)
+	{
+		res[i] = _strdup(tok);
+		tok = _strtok(NULL, " ");
+		i++;
+	}
+	res[i] = NULL;
+	free(cpy);
+	return (res);
 }
 
 /**
@@ -35,31 +63,11 @@ unsigned int countWords(char *str)
 }
 
 /**
- * splitString - splits string into an array of strings
- * separated by spaces
- * @str: input string
- * Return: array of strings
+ * isSpace - determines if char is a space
+ * @c: input char
+ * Return: true or false
  */
-char **splitString(char *str)
+_Bool isSpace(char c)
 {
-	register unsigned int i = 0;
-	char *tok, *cpy;
-	char **res;
-
-	if (countWords(str) == 0)
-		return (NULL);
-	res = malloc((countWords(str) + 1) * sizeof(char *));
-	if (!res)
-		return (NULL);
-	cpy = _strdup(str);
-	tok = _strtok(cpy, " ");
-	while (tok != NULL)
-	{
-		res[i] = _strdup(tok);
-		tok = _strtok(NULL, " ");
-		i++;
-	}
-	res[i] = NULL;
-	free(cpy);
-	return (res);
+	return (c == ' ');
 }
