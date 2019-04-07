@@ -14,7 +14,7 @@ char *checkPath(char *input, char *path)
 	struct stat st;
 
 	copy = _strdup(path);
-	tok = strtok(copy, delim);
+	tok = _strtok(copy, delim);
 	while (tok && *copy != ':')
 	{
 		len = _strlen(tok) + _strlen(input) + 2;
@@ -28,7 +28,7 @@ char *checkPath(char *input, char *path)
 			return (buffer);
 		}
 		insertNullByte(buffer, 0);
-		tok = strtok(NULL, delim);
+		tok = _strtok(NULL, delim);
 	}
 	if (stat(input, &st) == 0)
 	{

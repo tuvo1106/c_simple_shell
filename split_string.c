@@ -52,11 +52,11 @@ char **splitString(char *str)
 	if (!res)
 		return (NULL);
 	cpy = _strdup(str);
-	tok = strtok(cpy, " ");
+	tok = _strtok(cpy, " ");
 	while (tok != NULL)
 	{
 		res[i] = _strdup(tok);
-		tok = strtok(NULL, " ");
+		tok = _strtok(NULL, " ");
 		i++;
 	}
 	res[i] = NULL;

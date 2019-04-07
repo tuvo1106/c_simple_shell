@@ -9,13 +9,14 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 
 #define BUFSIZE 256
 
 typedef struct builtInCommands
 {
 	char *command;
-	void (*func)(void);
+	void (*func)(char **);
 } builtIns;
 
 void shell(char *, char **);
@@ -36,6 +37,8 @@ void freeArgs(char **args);
 void displayPrompt(void);
 void welcome_screen_1(void);
 void welcome_screen_2(void);
-
+int _strcspn(char *string, char *chars);
+char *_strchr(char *s, char c);
+char *_strtok(char *str, char *delim);
 
 #endif
