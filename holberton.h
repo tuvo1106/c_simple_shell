@@ -68,4 +68,10 @@ char *_strchr(char *s, char c);
 void welcome_screen_1(void);
 void welcome_screen_2(void);
 
+/* _getline */
+int _getline(char **bufferptr, size_t *n, FILE *stream);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char *_strcpy(char *dest, char *src);
+char *_memcpy(char *dest, char *src, unsigned int n);
+
 #endif
