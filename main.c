@@ -10,7 +10,7 @@
 int main(int ac, char **av, char **environ)
 {
 	char *PATH = _getenv("PATH", environ);
-	/* signal(SIGINT, sigintHandler); */
+//	signal(SIGINT, sigintHandler);
 
 	(void)ac;
 	(void)av;

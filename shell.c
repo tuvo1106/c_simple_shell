@@ -7,7 +7,7 @@
  */
 void shell(char *PATH, char **ENVIRON)
 {
-	register int len, childStatus, lineCounter = 0;
+	register int len, childStatus, builtInStatus, lineCounter = 0;
 	pid_t f1;
 	size_t bufferSize = 0;
 	char *buffer = NULL, *fullPath = NULL;
@@ -29,6 +29,9 @@ void shell(char *PATH, char **ENVIRON)
 		insertNullByte(buffer, len - 1);
 		args = splitString(buffer);
 		if (args == NULL)
+			continue;
+		builtInStatus = builtIns(args);
+		if (builtInStatus == 1)
 			continue;
 		fullPath = checkPath(args[0], PATH);
 		f1 = fork();

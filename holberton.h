@@ -24,9 +24,12 @@
 typedef struct builtInCommands
 {
 	char *command;
-	void (*func)(char **);
-} builtIns;
+	int (*func)(char **args);
+} type_b;
 
+int builtIns(char **args);
+int exitFunc(char **args);
+int envFunc(char **args);
 /* shell */
 void shell(char *, char **);
 
