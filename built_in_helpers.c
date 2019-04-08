@@ -1,6 +1,5 @@
 #include "holberton.h"
 
-
 /**
 * countArgs - count the number of arguments
 * @args: arguments
@@ -26,24 +25,19 @@ int countArgs(char **args)
 int _atoi(char *s)
 {
 	int i, sign;
-
 	unsigned int num;
 
 	i = 0;
 	num = 0;
 	sign = 1;
-
 	while ((*(s + i) < '0' || *(s + i) > '9') && *(s + i))
 	{
 		if (*(s + i) == '-')
 		{
 			sign = -sign;
-
 		}
 		i++;
-
 	}
-
 	if (*(s + i))
 	{
 		while (*(s + i) >= '0' && *(s + i) <= '9')
