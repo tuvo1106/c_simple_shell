@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
 * builtIns - find the right built in to use
 * @args: parsed strings
@@ -36,8 +35,17 @@ int builtIns(char **args)
 */
 int exitFunc(char **args)
 {
-	printf("exit: success\n");
-	return (1);
+	int argCount, exitStatus;
+
+	argCount = countArgs(args);
+	if (argCount == 1)
+		exit(0);
+	else if (argCount == 2)
+	{
+		exitStatus = _atoi(args[1]);
+		exit(exitStatus);
+	}
+	return (0);
 }
 /**
 * envFunc - print the environment

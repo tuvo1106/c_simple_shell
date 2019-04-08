@@ -30,6 +30,9 @@ typedef struct builtInCommands
 int builtIns(char **args);
 int exitFunc(char **args);
 int envFunc(char **args);
+
+int countArgs(char **args);
+int _atoi(char *s);
 /* shell */
 void shell(char *, char **);
 
