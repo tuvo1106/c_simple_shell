@@ -16,6 +16,8 @@
 #define BUFSIZE 256
 #define HSH "./hsh"
 
+extern char **environ;
+
 /**
  * struct builtInCommands - commands and functions associated with it
  * @command: input command
@@ -27,12 +29,26 @@ typedef struct builtInCommands
 	int (*func)(char **args);
 } type_b;
 
+/**
+ * struct linkedList - linked list data structure
+ * @string: environ variable path name
+ * @next: pointer to next node
+ */
+typedef struct linkedList
+{
+	char *string;
+	struct linkedList *next;
+} linked_l;
+
+/* built_ins */
 int builtIns(char **args);
 int exitFunc(char **args);
 int envFunc(char **args);
 
+/* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
+
 /* shell */
 void shell(char *, char **);
 
@@ -69,6 +85,17 @@ char *_strdup(char *str);
 char *_strtok(char *str, char *delim);
 int _strcspn(char *string, char *chars);
 char *_strchr(char *s, char c);
+
+/* llfuncs1 */
+linked_l *addNode(linked_l **head, const char *str);
+linked_l *addNodeEnd(linked_l **head, const char *str);
+size_t printList(const linked_l *h);
+void freeList(linked_l **head);
+unsigned int searchNode(linked_l *head, char *str);
+
+/* llfuncs2 */
+int delete_node_at_index(linked_l **head, unsigned int index);
+linked_l *generateLinkedList(char **array);
 
 /* welcome */
 void welcome_screen_1(void);

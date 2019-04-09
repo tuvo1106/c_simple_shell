@@ -23,6 +23,7 @@ char **splitString(char *str)
 	cpy = _strdup(str);
 	if (!cpy)
 	{
+		free(res);
 		perror("Malloc failed\n");
 		exit(errno);
 	}

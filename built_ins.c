@@ -38,10 +38,12 @@ int exitFunc(char **args)
 	int argCount, exitStatus;
 
 	argCount = countArgs(args);
+	freeArgs(args);
 	if (argCount == 1)
 		exit(0);
-	else if (argCount == 2)
+	else if (argCount > 1)
 	{
+		/* check for valid string */
 		exitStatus = _atoi(args[1]);
 		exit(exitStatus);
 	}
@@ -55,6 +57,11 @@ int exitFunc(char **args)
 */
 int envFunc(char **args)
 {
-	printf("env: success\n");
+	linked_l *head = NULL;
+
+	head = generateLinkedList(environ);
+	printList(head);
+	freeList(&head);
+	freeArgs(args);
 	return (1);
 }
