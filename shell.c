@@ -11,6 +11,7 @@ void shell(void)
 	char *buffer = NULL, *fullPath = NULL;
 	char *path = _getenv("PATH", environ);
 	char **args;
+	linked_l env;
 
 	while (true)
 	{
@@ -29,7 +30,7 @@ void shell(void)
 		args = splitString(buffer);
 		if (args == NULL)
 			continue;
-		builtInStatus = builtIns(args);
+		builtInStatus = builtIns(args, env);
 		if (builtInStatus == 1)
 			continue;
 		fullPath = checkPath(args[0], path);

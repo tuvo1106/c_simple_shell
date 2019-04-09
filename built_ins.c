@@ -5,7 +5,7 @@
 *
 * Return: 1 if found, 0 if not found
 */
-int builtIns(char **args)
+int builtIns(char **args, linked_l env)
 {
 	type_b getBuiltIns[] = {
 	{"exit", exitFunc},
@@ -24,7 +24,7 @@ int builtIns(char **args)
 	{
 		if (_strcmp(args[0], getBuiltIns[index].command) == 0)
 		{
-			getBuiltIns[index].func(args);
+			getBuiltIns[index].func(args, env);
 			return (1);
 		}
 		index++;

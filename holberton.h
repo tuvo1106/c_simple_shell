@@ -19,17 +19,6 @@
 extern char **environ;
 
 /**
- * struct builtInCommands - commands and functions associated with it
- * @command: input command
- * @func: output function
- */
-typedef struct builtInCommands
-{
-	char *command;
-	int (*func)(char **args, linked_l);
-} type_b;
-
-/**
  * struct linkedList - linked list data structure
  * @string: environ variable path name
  * @next: pointer to next node
@@ -40,15 +29,27 @@ typedef struct linkedList
 	struct linkedList *next;
 } linked_l;
 
+
+/**
+ * struct builtInCommands - commands and functions associated with it
+ * @command: input command
+ * @func: output function
+ */
+typedef struct builtInCommands
+{
+	char *command;
+	int (*func)(char **args, linked_l);
+} type_b;
+
 /* built_ins */
-int builtIns(char **args, linked_l env);
-int exitFunc(char **args, linked_l env);
-int envFunc(char **args, linked_l env);
-int historyFunc(char **args, linked_l env);
-int aliasFunc(char **args, linked_l env);
-int cdFunc(char **args, linked_l env);
-int setenvFunc(char **args, linked_l env);
-int unsetenvFunc(char **args, linked_l env);
+int builtIns(char **args, linked_l);
+int exitFunc(char **args, linked_l);
+int envFunc(char **args, linked_l);
+int historyFunc(char **args, linked_l);
+int aliasFunc(char **args, linked_l);
+int cdFunc(char **args, linked_l);
+int setenvFunc(char **args, linked_l);
+int unsetenvFunc(char **args, linked_l);
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
