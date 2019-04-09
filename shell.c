@@ -5,8 +5,7 @@
  */
 void shell(void)
 {
-	register int len, childStatus, builtInStatus, lineCounter = 0;
-	pid_t f1;
+	register int len, builtInStatus, lineCounter = 0;
 	size_t bufferSize = 0;
 	char *buffer = NULL, *fullPath = NULL;
 	char *path = _getenv("PATH", environ);
@@ -34,26 +33,33 @@ void shell(void)
 		if (builtInStatus == 1)
 			continue;
 		fullPath = checkPath(args[0], path);
-		f1 = fork();
-		if (f1 == 0)
-		{
-			childStatus = fullPath
-				? execve(fullPath, args, environ)
-				: execve(args[0], args, environ);
-			if (childStatus == -1)
-			{
-				errorHandler(HSH, lineCounter, buffer);
-				free(buffer);
-				freeArgs(args);
-				exit(0);
-			}
-		}
-		else
-		{
-			wait(NULL);
-			freeArgs(args);
-		}
+		forkAndExecute(args, fullPath, buffer, lineCounter);
 	}
 	free(buffer);
 }
 
+void forkAndExecute(char **args, char *fullPath, char *buffer, int lineCounter)
+{	
+	pid_t f1;
+	int childStatus = 0;
+
+	f1 = fork();
+	if (f1 == 0)
+	{
+		childStatus = fullPath
+			? execve(fullPath, args, environ)
+			: execve(args[0], args, environ);
+		if (childStatus == -1)
+		{
+			errorHandler(HSH, lineCounter, buffer);
+			free(buffer);
+			freeArgs(args);
+			exit(0);
+		}
+	}
+	else
+	{
+		wait(NULL);
+		freeArgs(args);
+	}
+}

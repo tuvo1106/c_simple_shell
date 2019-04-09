@@ -56,7 +56,7 @@ int _atoi(char *s);
 
 /* shell */
 void shell(void);
-
+void forkAndExecute(char **args, char *fullPath, char *buffer, int lineCounter);
 /* _getenv */
 char *_getenv(char *input, char **environ);
 
