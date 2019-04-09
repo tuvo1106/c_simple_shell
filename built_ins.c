@@ -12,6 +12,9 @@ int builtIns(char **args)
 	{"env", envFunc},
 	{"history", historyFunc},
 	{"alias", aliasFunc},
+	{"cd", cdFunc},
+	{"setenv", setenvFunc},
+	{"unsetenv", unsetenvFunc},
 	{NULL, NULL}
 	};
 
@@ -51,23 +54,6 @@ int exitFunc(char **args)
 	}
 	return (0);
 }
-/**
-* envFunc - print the environment
-* @args: the parsed env string
-*
-* Return: 1
-*/
-int envFunc(char **args)
-{
-	linked_l *head = NULL;
-
-	head = generateLinkedList(environ);
-	printList(head);
-	freeList(&head);
-	freeArgs(args);
-	return (1);
-}
-
 int historyFunc(char **args)
 {
 	printf("history placeholder\n");

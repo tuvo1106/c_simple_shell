@@ -46,7 +46,9 @@ int exitFunc(char **args);
 int envFunc(char **args);
 int historyFunc(char **args);
 int aliasFunc(char **args);
-
+int cdFunc(char **args);
+int setenvFunc(char **args);
+int unsetenvFunc(char **args);
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
