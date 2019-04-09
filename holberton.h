@@ -50,7 +50,7 @@ int countArgs(char **args);
 int _atoi(char *s);
 
 /* shell */
-void shell(char *, char **);
+void shell(void);
 
 /* _getenv */
 char *_getenv(char *input, char **environ);
