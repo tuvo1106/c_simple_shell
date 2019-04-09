@@ -2,15 +2,14 @@
 
 /**
  * shell - simple shell
- * @PATH: string of $PATH
- * @ENVIRON: array of environ variables
  */
-void shell(char *PATH, char **ENVIRON)
+void shell(void)
 {
 	register int len, childStatus, builtInStatus, lineCounter = 0;
 	pid_t f1;
 	size_t bufferSize = 0;
 	char *buffer = NULL, *fullPath = NULL;
+	char *path = _getenv("PATH", environ);
 	char **args;
 
 	while (true)
@@ -33,13 +32,13 @@ void shell(char *PATH, char **ENVIRON)
 		builtInStatus = builtIns(args);
 		if (builtInStatus == 1)
 			continue;
-		fullPath = checkPath(args[0], PATH);
+		fullPath = checkPath(args[0], path);
 		f1 = fork();
 		if (f1 == 0)
 		{
 			childStatus = fullPath
-				? execve(fullPath, args, ENVIRON)
-				: execve(args[0], args, ENVIRON);
+				? execve(fullPath, args, environ)
+				: execve(args[0], args, environ);
 			if (childStatus == -1)
 			{
 				errorHandler(HSH, lineCounter, buffer);
