@@ -38,25 +38,25 @@ typedef struct linkedList
 typedef struct builtInCommands
 {
 	char *command;
-	int (*func)(char **args, linked_l);
+	int (*func)(char **args, linked_l *env, char *buffer);
 } type_b;
 
 /* built_ins */
-int builtIns(char **args, linked_l);
-int exitFunc(char **args, linked_l);
-int envFunc(char **args, linked_l);
-int historyFunc(char **args, linked_l);
-int aliasFunc(char **args, linked_l);
-int cdFunc(char **args, linked_l);
-int setenvFunc(char **args, linked_l);
-int unsetenvFunc(char **args, linked_l);
+int builtIns(char **args, linked_l *env, char *buffer);
+int exitFunc(char **args, linked_l *env, char *buffer);
+int envFunc(char **args, linked_l *env, char *buffer);
+int historyFunc(char **args, linked_l *env, char *buffer);
+int aliasFunc(char **args, linked_l *env, char *buffer);
+int cdFunc(char **args, linked_l *env, char *buffer);
+int setenvFunc(char **args, linked_l *env, char *buffer);
+int unsetenvFunc(char **args, linked_l *env, char *buffer);
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
 
 /* shell */
-void shell(void);
-void forkAndExecute(char **args, char *fullPath, char *buffer, int lineCounter);
+void shell(linked_l *env);
+void forkAndExecute(char **args, char *fullPath, char *buffer, linked_l *env, int lineCounter);
 /* _getenv */
 char *_getenv(char *input, char **environ);
 

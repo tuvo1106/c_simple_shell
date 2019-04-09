@@ -5,7 +5,7 @@
 *
 * Return: 1 if found, 0 if not found
 */
-int builtIns(char **args, linked_l env)
+int builtIns(char **args, linked_l *env, char* buffer)
 {
 	type_b getBuiltIns[] = {
 	{"exit", exitFunc},
@@ -24,7 +24,7 @@ int builtIns(char **args, linked_l env)
 	{
 		if (_strcmp(args[0], getBuiltIns[index].command) == 0)
 		{
-			getBuiltIns[index].func(args, env);
+			getBuiltIns[index].func(args, env, buffer);
 			return (1);
 		}
 		index++;
@@ -38,12 +38,14 @@ int builtIns(char **args, linked_l env)
 *
 * Return: 1
 */
-int exitFunc(char **args, linked_l env)
+int exitFunc(char **args, linked_l *env, char *buffer)
 {
 	int argCount, exitStatus;
 
 	argCount = countArgs(args);
+	free(buffer);
 	freeArgs(args);
+	freeList(&env);
 	if (argCount == 1)
 		exit(0);
 	else if (argCount > 1)
@@ -54,13 +56,13 @@ int exitFunc(char **args, linked_l env)
 	}
 	return (0);
 }
-int historyFunc(char **args, linked_l env)
+int historyFunc(char **args, linked_l *env, char *buffer)
 {
 	printf("history placeholder\n");
 	return (1);
 }
 
-int aliasFunc(char **args, linked_l env)
+int aliasFunc(char **args, linked_l *env, char *buffer)
 {
 	printf("alias placeholder\n");
 	return (1);

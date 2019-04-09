@@ -6,7 +6,10 @@
  */
 int main(void)
 {
+	linked_l *env;
+
 	signal(SIGINT, sigintHandler);
-	shell();
+	env = generateLinkedList(environ);
+	shell(env);
 	return (EXIT_SUCCESS);
 }
