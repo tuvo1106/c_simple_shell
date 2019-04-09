@@ -7,22 +7,29 @@
  * @str: input string
  * Return: index of node with matching string
  */
-unsigned int searchNode(linked_l *head, char *str)
+int searchNode(linked_l *head, char *str)
 {
-	register uint index = 0;
+	register int len, index = 0;
 	linked_l *current;
-	char *tok;
-
+	char *tmp, *ptr;
+	
 	current = head;
 	while (current)
 	{
-		tok = _strtok(current->string, "=");
-		if (_strcmp(str, tok) == 0)
+		ptr = _strchr(current->string, '=');
+		len = ptr - current->string;
+		tmp = malloc(len);
+		tmp[len - 1] = 0;
+		printf("%s", tmp);
+		if (_strcmp(str, tmp) == 0)
+		{	free(tmp);
 			return (index);
+		}
 		index++;
 		current = current->next;
+		free(tmp);
 	}
-	return (0);
+	return (-1);
 }
 
 /**
