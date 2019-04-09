@@ -26,7 +26,7 @@ extern char **environ;
 typedef struct builtInCommands
 {
 	char *command;
-	int (*func)(char **args);
+	int (*func)(char **args, linked_l);
 } type_b;
 
 /**
@@ -41,14 +41,14 @@ typedef struct linkedList
 } linked_l;
 
 /* built_ins */
-int builtIns(char **args);
-int exitFunc(char **args);
-int envFunc(char **args);
-int historyFunc(char **args);
-int aliasFunc(char **args);
-int cdFunc(char **args);
-int setenvFunc(char **args);
-int unsetenvFunc(char **args);
+int builtIns(char **args, linked_l env);
+int exitFunc(char **args, linked_l env);
+int envFunc(char **args, linked_l env);
+int historyFunc(char **args, linked_l env);
+int aliasFunc(char **args, linked_l env);
+int cdFunc(char **args, linked_l env);
+int setenvFunc(char **args, linked_l env);
+int unsetenvFunc(char **args, linked_l env);
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);

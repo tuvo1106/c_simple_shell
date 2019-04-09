@@ -38,7 +38,7 @@ int builtIns(char **args)
 *
 * Return: 1
 */
-int exitFunc(char **args)
+int exitFunc(char **args, linked_l env)
 {
 	int argCount, exitStatus;
 
@@ -54,13 +54,13 @@ int exitFunc(char **args)
 	}
 	return (0);
 }
-int historyFunc(char **args)
+int historyFunc(char **args, linked_l env)
 {
 	printf("history placeholder\n");
 	return (1);
 }
 
-int aliasFunc(char **args)
+int aliasFunc(char **args, linked_l env)
 {
 	printf("alias placeholder\n");
 	return (1);

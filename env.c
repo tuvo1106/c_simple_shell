@@ -6,7 +6,7 @@
 *
 * Return: 1
 */
-int envFunc(char **args)
+int envFunc(char **args, linke_l env)
 {
 	linked_l *head = NULL;
 
@@ -18,13 +18,13 @@ int envFunc(char **args)
 }
 
 
-int setenvFunc(char **args)
+int setenvFunc(char **args, linked_l env)
 {
 	printf("setenv placeholder\n");
 	return(1);
 }
 
-int unsetenvFunc(char **args)
+int unsetenvFunc(char **args, linked_l env)
 {
 	printf("unsetenv placeholder\n");
 	return (1);
