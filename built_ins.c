@@ -11,6 +11,7 @@ int builtIns(char **args)
 	{"exit", exitFunc},
 	{"env", envFunc},
 	{"history", historyFunc},
+	{"alias", aliasFunc},
 	{NULL, NULL}
 	};
 
@@ -73,4 +74,9 @@ int historyFunc(char **args)
 	return (1);
 }
 
+int aliasFunc(char **args)
+{
+	printf("alias placeholder\n");
+	return (1);
+}
 

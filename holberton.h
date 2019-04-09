@@ -45,6 +45,7 @@ int builtIns(char **args);
 int exitFunc(char **args);
 int envFunc(char **args);
 int historyFunc(char **args);
+int aliasFunc(char **args);
 
 /* built_in_helpers*/
 int countArgs(char **args);
