@@ -1,4 +1,4 @@
-#include "holberton.h"
+ #include "holberton.h"
 
 /**
 * envFunc - print the environment
@@ -6,24 +6,20 @@
 *
 * Return: 1
 */
-int envFunc(char **args, linked_l env)
+int envFunc(char **args, linked_l *env, char *buffer)
 {
-	linked_l *head = NULL;
-
-	head = generateLinkedList(environ);
-	printList(head);
-	freeList(&head);
+	printList(env);
 	freeArgs(args);
 	return (1);
 }
 
-int setenvFunc(char **args, linked_l env)
+int setenvFunc(char **args, linked_l *env, char *buffer)
 {
 	printf("setenv placeholder\n");
 	return (1);
 }
 
-int unsetenvFunc(char **args, linked_l env)
+int unsetenvFunc(char **args, linked_l *env, char *buffer)
 {
 	printf("unsetenv placeholder\n");
 	return (1);
