@@ -44,6 +44,7 @@ typedef struct linkedList
 int builtIns(char **args);
 int exitFunc(char **args);
 int envFunc(char **args);
+int historyFunc(char **args);
 
 /* built_in_helpers*/
 int countArgs(char **args);

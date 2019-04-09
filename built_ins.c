@@ -10,6 +10,7 @@ int builtIns(char **args)
 	type_b getBuiltIns[] = {
 	{"exit", exitFunc},
 	{"env", envFunc},
+	{"history", historyFunc},
 	{NULL, NULL}
 	};
 
@@ -65,3 +66,11 @@ int envFunc(char **args)
 	freeArgs(args);
 	return (1);
 }
+
+int historyFunc(char **args)
+{
+	printf("history placeholder\n");
+	return (1);
+}
+
+
