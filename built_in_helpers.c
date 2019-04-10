@@ -8,7 +8,7 @@
 */
 int countArgs(char **args)
 {
-	int index = 0;
+	register int index = 0;
 
 	while (args[index])
 		index++;
@@ -17,14 +17,14 @@ int countArgs(char **args)
 
 /**
 * _atoi - change string to an integer
-*@s: string.
+* @s: string.
 *
 * Return: an integer.
 */
 
 int _atoi(char *s)
 {
-	int i, sign;
+	register int i, sign;
 	unsigned int num;
 
 	i = 0;

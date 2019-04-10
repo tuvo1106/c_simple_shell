@@ -1,18 +1,24 @@
 #include "holberton.h"
 
 /**
- * envFunc - print the environment
- * @args: the parsed env string
- *
- * Return: 1
+ * envFunc - print all the environment variables
+ * @build: input build
+ * Return: 1 on success
  */
 int envFunc(config *build)
 {
 	printList(build->env);
 	freeArgs(build->args);
+	free(build->buffer);
 	return (1);
 }
 
+/**
+ * setenvFunc - adds env variable if it does not exist;
+ * modify env variable if it does
+ * @build: input build
+ * Return: 1 on success
+ */
 int setenvFunc(config *build)
 {
 	(void)build;
@@ -20,6 +26,12 @@ int setenvFunc(config *build)
 	return (1);
 }
 
+/**
+ * unsetenvFunc - deletes env variable if exists;
+ * will only accept valid variables names
+ * @build: input build
+ * Return: 1 on success
+ */
 int unsetenvFunc(config *build)
 {
 	register int foundVar, i = 1;
@@ -39,8 +51,12 @@ int unsetenvFunc(config *build)
 		i++;
 	}
 	if (foundMatch == false)
+	{
+		/* Call error handler */
 		printf("Not found\n");
+	}
 	freeArgs(build->args);
+	free(build->buffer);
 	return (1);
 }
 

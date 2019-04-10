@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
 * builtIns - find the right built in to use
-* @args: parsed strings
+* @build: input build
 *
 * Return: 1 if found, 0 if not found
 */
@@ -33,17 +33,17 @@ int builtIns(config *build)
 }
 
 /**
-* exitFunc - exit.
-* @args: the parsed exit string
+* exitFunc - exits the applciation
+* @build: input build
 *
-* Return: 1
+* Return: 1 on success
 */
 int exitFunc(config *build)
 {
 	int argCount, exitStatus;
 
 	argCount = countArgs(build->args);
-	freeAlltheThings(build);
+	freeMembers(build);
 	free(build);
 	if (argCount == 1)
 		exit(0);
@@ -53,8 +53,14 @@ int exitFunc(config *build)
 		exitStatus = _atoi(build->args[1]);
 		exit(exitStatus);
 	}
-	return (0);
+	return (1);
 }
+
+/**
+ * historyFunc - displays command history
+ * @build: input build
+ * Return: 1 on success, 0 on failure
+ */
 int historyFunc(config *build)
 {
 	(void)build;
@@ -62,6 +68,11 @@ int historyFunc(config *build)
 	return (1);
 }
 
+/**
+ * aliasFunc - displays local aliases
+ * @build: input build
+ * Return: 1 on success
+ */
 int aliasFunc(config *build)
 {
 	(void)build;

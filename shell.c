@@ -2,39 +2,57 @@
 
 /**
  * shell - simple shell
+ * @build: input build
  */
 void shell(config *build)
 {
-	register int len, builtInStatus;
-	size_t bufferSize = 0;
+	register int builtInStatus;
 
 	while (true)
 	{
-		build->args = NULL;
-		build->lineCounter++;
-		if (isatty(STDIN_FILENO))
-			displayPrompt();
-		len = getline(&build->buffer, &bufferSize, stdin);
-		if (len < 0)
-		{
-			freeAlltheThings(build);
-			free(build);
-			if (isatty(STDIN_FILENO))
-				displayNewLine();
-			exit(0);
-		}
-		insertNullByte(build->buffer, len - 1);
+		checkAndGetLine(build);
 		build->args = splitString(build->buffer);
 		if (build->args == NULL)
 			continue;
 		builtInStatus = builtIns(build);
-		if (builtInStatus == 1)
+		if (builtInStatus == true)
 			continue;
 		build->fullPath = checkPath(build->args[0], build->path);
 		forkAndExecute(build);
 	}
 }
 
+/**
+ * checkAndGetLine - check stdin and retrieves next line; handles
+ * prompt display
+ * @build: input build
+ */
+void checkAndGetLine(config *build)
+{
+	register int len;
+	size_t bufferSize = 0;
+
+	build->args = NULL;
+	build->lineCounter++;
+	if (isatty(STDIN_FILENO))
+		displayPrompt();
+	len = getline(&build->buffer, &bufferSize, stdin);
+	if (len < 0)
+	{
+		freeMembers(build);
+		free(build);
+		if (isatty(STDIN_FILENO))
+			displayNewLine();
+		exit(0);
+	}
+	insertNullByte(build->buffer, len - 1);
+}
+
+
+/**
+ * forkAndExecute - fork current build and execute processes
+ * @build: input build
+ */
 void forkAndExecute(config *build)
 {
 	pid_t f1;
@@ -49,7 +67,7 @@ void forkAndExecute(config *build)
 		if (childStatus == -1)
 		{
 			errorHandler(HSH, build->lineCounter, build->buffer);
-			freeAlltheThings(build);
+			freeMembers(build);
 			free(build);
 			exit(0);
 		}
@@ -58,5 +76,6 @@ void forkAndExecute(config *build)
 	{
 		wait(NULL);
 		freeArgs(build->args);
+		free(build->buffer);
 	}
 }

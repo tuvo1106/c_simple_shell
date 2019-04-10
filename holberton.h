@@ -29,6 +29,15 @@ typedef struct linkedList
 	struct linkedList *next;
 } linked_l;
 
+/**
+ * struct configurations - configuration of build settings
+ * @env: linked list of local env variables
+ * @args: array of argument strings
+ * @buffer: string buffer of user input
+ * @path: array of $PATH locations
+ * @fullPath: string of path with correct prepended $PATH
+ * @lineCounter: counter of lines users have entered
+ */
 typedef struct configurations
 {
 	linked_l *env;
@@ -50,6 +59,9 @@ typedef struct builtInCommands
 	int (*func)(config *);
 } type_b;
 
+/* main */
+config *configInit(config *build);
+
 /* built_ins */
 int builtIns(config *);
 int exitFunc(config *);
@@ -60,12 +72,14 @@ int cdFunc(config *);
 int setenvFunc(config *);
 int unsetenvFunc(config *);
 int _isalpha(int c);
+
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
 
 /* shell */
 void shell(config *);
+void checkAndGetLine(config *);
 void forkAndExecute(config *);
 /* _getenv */
 char *_getenv(char *input, char **environ);
@@ -123,6 +137,6 @@ char *_strcpy(char *dest, char *src);
 char *_memcpy(char *dest, char *src, unsigned int n);
 
 /* free */
-void freeAlltheThings(config *build);
+void freeMembers(config *build);
 
 #endif

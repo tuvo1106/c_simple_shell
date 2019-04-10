@@ -8,14 +8,25 @@ int main(void)
 {
 	config *build;
 
-	build = malloc(sizeof(config));
 	signal(SIGINT, sigintHandler);
+	build = malloc(sizeof(config));
+	configInit(build);
+	shell(build);
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * configInit - initialize member values for config struct
+ * @build: input build
+ * Return: build with initialized members
+ */
+config *configInit(config *build)
+{
 	build->env = generateLinkedList(environ);
 	build->args = NULL;
 	build->buffer = NULL;
 	build->path = _getenv("PATH", environ);
 	build->fullPath = NULL;
 	build->lineCounter = 0;
-	shell(build);
-	return (EXIT_SUCCESS);
+	return (build);
 }

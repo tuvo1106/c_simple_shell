@@ -1,6 +1,10 @@
 #include "holberton.h"
 
-void freeAlltheThings(config *build)
+/**
+ * freeMembers - frees build config members
+ * @build: input build
+ */
+void freeMembers(config *build)
 {
 	if (build->env)
 		freeList(build->env);
