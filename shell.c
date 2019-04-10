@@ -66,7 +66,7 @@ void forkAndExecute(config *build)
 			: execve(build->args[0], build->args, environ);
 		if (childStatus == -1)
 		{
-			errorHandler(HSH, build->lineCounter, build->buffer);
+			errorHandler(build->lineCounter, build->buffer, NULL);
 			freeMembers(build);
 			free(build);
 			exit(0);

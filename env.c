@@ -52,8 +52,8 @@ int unsetenvFunc(config *build)
 	}
 	if (foundMatch == false)
 	{
-		/* Call error handler */
-		printf("Not found\n");
+		errno = ENOSTRING;
+		errorHandler(build->lineCounter, build->buffer, NULL);
 	}
 	freeArgs(build->args);
 	free(build->buffer);

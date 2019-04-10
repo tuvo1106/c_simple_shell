@@ -14,7 +14,10 @@
 #include <signal.h>
 
 #define BUFSIZE 256
-#define HSH "./hsh"
+#define SHELLNAME "./hsh"
+
+/* ERRORS */
+#define ENOSTRING 1106
 
 extern char **environ;
 
@@ -85,9 +88,10 @@ void forkAndExecute(config *);
 char *_getenv(char *input, char **environ);
 
 /* error_handler */
-void errorHandler(char *f, int n, char *cmd);
+void errorHandler(int n, char *cmd, char *arg);
 unsigned int countDigits(int num);
 char *itoa(unsigned int num);
+char *getErrorMessage();
 
 /* shell_helpers */
 void freeArgs(char **args);
