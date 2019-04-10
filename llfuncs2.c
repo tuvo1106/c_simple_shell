@@ -54,7 +54,7 @@ linked_l *generateLinkedList(char **array)
 	return (head);
 }
 
-linked_l *addNodeAtIndex(linked_l **head, int index, const char *str)
+linked_l *addNodeAtIndex(linked_l **head, int index, char *str)
 {
 	register int i = 0;
 	linked_l *newNode, *current;

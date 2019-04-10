@@ -72,7 +72,6 @@ int cdFunc(config *);
 int setenvFunc(config *);
 int unsetenvFunc(config *);
 int _isalpha(int c);
-linked_l *addNodeAtIndex(linked_l **head, int index, const char *str);
 
 /* built_in_helpers*/
 int countArgs(char **args);
@@ -126,7 +125,7 @@ int searchNode(linked_l *head, char *str);
 /* llfuncs2 */
 int deleteNodeAtIndex(linked_l **head, unsigned int index);
 linked_l *generateLinkedList(char **array);
-
+linked_l *addNodeAtIndex(linked_l **head, int index, char *str);
 /* welcome */
 void welcome_screen_1(void);
 void welcome_screen_2(void);

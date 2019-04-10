@@ -21,8 +21,34 @@ int envFunc(config *build)
  */
 int setenvFunc(config *build)
 {
-	(void)build;
-	printf("setenv placeholder\n");
+	int index, len;
+	linked_l *newNode;
+	char *str;
+
+	len = _strlen(build->args[1]) + _strlen(build->args[2]) + 2;
+	str = malloc(len);
+	if (!str)
+	{
+		free(str);
+		return (-1);
+	}
+	_strcat(str, build->args[1]);
+	_strcat(str, "=");
+	_strcat(str, build->args[2]);
+	insertNullByte(str, len - 1);
+	index = searchNode(build->env, build->args[1]);
+	if (index == -1)
+	{
+		newNode = addNode(&build->env, str);
+		free(str);
+		return(1);
+	}
+	else
+	{
+		deleteNodeAtIndex(&build->env, index);
+		addNodeAtIndex(&build->env, index, str); 
+		free(str);
+	}
 	return (1);
 }
 
