@@ -19,6 +19,7 @@
 /* ERRORS */
 #define ENOSTRING 1106
 #define EILLEGAL 227
+#define EWSIZE 410
 
 extern char **environ;
 

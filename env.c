@@ -21,30 +21,39 @@ int envFunc(config *build)
  */
 int setenvFunc(config *build)
 {
-	int index, len;
-	char *str = NULL;
+	register int index, len;
+	static char buffer[BUFSIZE];
 
+	if (countArgs(build->args) != 3)
+	{
+		errno = EWSIZE;
+		errorHandler(build->lineCounter, build->args[0], NULL);
+		freeArgs(build->args);
+		free(build->buffer);
+		return (1);
+	}
 	len = _strlen(build->args[1]) + _strlen(build->args[2]) + 2;
-	str = malloc(len);
-	if (!str)
-		return (-1);
-	_strcat(str, build->args[1]);
-	_strcat(str, "=");
-	_strcat(str, build->args[2]);
-	insertNullByte(str, len - 1);
+	_strcat(buffer, build->args[1]);
+	_strcat(buffer, "=");
+	_strcat(buffer, build->args[2]);
+	insertNullByte(buffer, len - 1);
 	index = searchNode(build->env, build->args[1]);
 	if (index == -1)
 	{
-		addNode(&build->env, str);
-		free(str);
-		return(1);
+		addNodeEnd(&build->env, buffer);
+		insertNullByte(buffer, 0);
+		freeArgs(build->args);
+		free(build->buffer);
+		return (1);
 	}
 	else
 	{
 		deleteNodeAtIndex(&build->env, index);
-		addNodeAtIndex(&build->env, index, str);
-		free(str);
+		addNodeAtIndex(&build->env, index, buffer);
 	}
+	insertNullByte(buffer, 0);
+	freeArgs(build->args);
+	free(build->buffer);
 	return (1);
 }
 

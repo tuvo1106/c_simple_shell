@@ -53,6 +53,9 @@ char *getErrorMessage()
 		case EILLEGAL:
 			str = ": illegal number";
 			break;
+		case EWSIZE:
+			str = ": invalid number of arguments";
+			break;
 		default:
 			str = "no error number assigned";
 	}
