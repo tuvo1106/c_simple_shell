@@ -1,11 +1,11 @@
- #include "holberton.h"
+#include "holberton.h"
 
 /**
-* envFunc - print the environment
-* @args: the parsed env string
-*
-* Return: 1
-*/
+ * envFunc - print the environment
+ * @args: the parsed env string
+ *
+ * Return: 1
+ */
 int envFunc(char **args, linked_l *env, char *buffer)
 {
 	printList(env);
@@ -21,28 +21,26 @@ int setenvFunc(char **args, linked_l *env, char *buffer)
 
 int unsetenvFunc(char **args, linked_l *env, char *buffer)
 {
-	int foundVar, i = 1;
+	register int foundVar, i = 1;
+	_Bool foundMatch = false;
 
-	printf("unsetenv placeholder\n");
-	
 	while (args[i])
 	{
 		if (_isalpha(args[i][0]) || args[i][0] == '_')
-		{	
+		{
 			foundVar = searchNode(env, args[i]);
 			if (foundVar > -1)
+			{
 				deleteNodeAtIndex(&env, foundVar);
-		}
-		else
-		{		
-			printf("bad var\n");
+				foundMatch = true;
+			}
 		}
 		i++;
-	}	
-		return (1);
+	}
+	if (foundMatch == false)
+		printf("Not found\n");
+	return (1);
 }
-
-#include "holberton.h"
 
 /**
  * _isalpha - checks if c is an alphabetic character
