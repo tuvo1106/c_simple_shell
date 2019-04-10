@@ -24,28 +24,21 @@ int countArgs(char **args)
 
 int _atoi(char *s)
 {
-	register int i, sign;
+	register int i;
 	unsigned int num;
 
 	i = 0;
 	num = 0;
-	sign = 1;
-	while ((*(s + i) < '0' || *(s + i) > '9') && *(s + i))
-	{
-		if (*(s + i) == '-')
-		{
-			sign = -sign;
-		}
+
+	while (s[i])
+	{	
+		if (s[i] >= '0' && s[i] <= '9')
+			num = num * 10 + s[i] - '0';
+		else 
+			return (-1);
 		i++;
 	}
-	if (*(s + i))
-	{
-		while (*(s + i) >= '0' && *(s + i) <= '9')
-		{
-			num = num * 10 + (*(s + i) - '0');
-			i++;
-		}
-	}
-	num = sign * num;
+	if (num > 2147483647)
+		return(-1);
 	return (num);
 }

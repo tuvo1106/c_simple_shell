@@ -41,7 +41,6 @@ int builtIns(config *build)
 int exitFunc(config *build)
 {
 	int argCount, exitStatus;
-	_Bool illegalName = true;
 
 	argCount = countArgs(build->args);
 	if (argCount == 1)
@@ -53,14 +52,14 @@ int exitFunc(config *build)
 	else if (argCount > 1)
 	{
 		/* check for valid string */
-		/* placeholder logic */
-		if (illegalName == true)
+		/* placeholder logic */	
+		exitStatus = _atoi(build->args[1]);
+		if (exitStatus == -1)
 		{
 			errno = EILLEGAL;
 			errorHandler(build->lineCounter, build->args[0], build->args[1]);
 			return (0);
 		}
-		exitStatus = _atoi(build->args[1]);
 		freeMembers(build);
 		free(build);
 		exit(exitStatus);
