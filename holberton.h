@@ -14,10 +14,11 @@
 #include <signal.h>
 
 #define BUFSIZE 256
-#define SHELLNAME "./hsh"
+#define SHELLNAME "hsh"
 
 /* ERRORS */
 #define ENOSTRING 1106
+#define EILLEGAL 227
 
 extern char **environ;
 

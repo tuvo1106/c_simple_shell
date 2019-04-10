@@ -1,21 +1,21 @@
 #include "holberton.h"
 /**
-* builtIns - find the right built in to use
-* @build: input build
-*
-* Return: 1 if found, 0 if not found
-*/
+ * builtIns - find the right built in to use
+ * @build: input build
+ *
+ * Return: 1 if found, 0 if not found
+ */
 int builtIns(config *build)
 {
 	type_b getBuiltIns[] = {
-	{"exit", exitFunc},
-	{"env", envFunc},
-	{"history", historyFunc},
-	{"alias", aliasFunc},
-	{"cd", cdFunc},
-	{"setenv", setenvFunc},
-	{"unsetenv", unsetenvFunc},
-	{NULL, NULL}
+		{"exit", exitFunc},
+		{"env", envFunc},
+		{"history", historyFunc},
+		{"alias", aliasFunc},
+		{"cd", cdFunc},
+		{"setenv", setenvFunc},
+		{"unsetenv", unsetenvFunc},
+		{NULL, NULL}
 	};
 
 	register int index = 0;
@@ -33,31 +33,36 @@ int builtIns(config *build)
 }
 
 /**
-* exitFunc - exits the applciation
-* @build: input build
-*
-* Return: 1 on success
-*/
+ * exitFunc - exits the applciation
+ * @build: input build
+ *
+ * Return: 1 on success
+ */
 int exitFunc(config *build)
 {
 	int argCount, exitStatus;
 	_Bool illegalName = true;
 
 	argCount = countArgs(build->args);
-	freeMembers(build);
-	free(build);
 	if (argCount == 1)
+	{
+		freeMembers(build);
+		free(build);
 		exit(0);
+	}
 	else if (argCount > 1)
 	{
 		/* check for valid string */
 		/* placeholder logic */
 		if (illegalName == true)
 		{
-			errorHandler(build->lineCounter, build->buffer, build->args[1]);
+			errno = EILLEGAL;
+			errorHandler(build->lineCounter, build->args[0], build->args[1]);
 			return (0);
 		}
 		exitStatus = _atoi(build->args[1]);
+		freeMembers(build);
+		free(build);
 		exit(exitStatus);
 	}
 	return (1);

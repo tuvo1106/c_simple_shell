@@ -21,7 +21,10 @@ void errorHandler(int num, char *cmd, char *arg)
 	_strcat(error, cmd);
 	_strcat(error, getErrorMessage());
 	if (arg)
+	{
+		_strcat(error, ": ");
 		_strcat(error, arg);
+	}
 	_strcat(error, "\n");
 	ptr = _strchr(error, '\n');
 	len = ptr - error;
@@ -46,6 +49,9 @@ char *getErrorMessage()
 			break;
 		case ENOSTRING:
 			str = ": bad variable name";
+			break;
+		case EILLEGAL:
+			str = ": illegal number";
 			break;
 		default:
 			str = "no error number assigned";
