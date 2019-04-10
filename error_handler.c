@@ -2,27 +2,61 @@
 
 /**
  * errorHandler - prints error message for shell()
- * @filename: filename of shell
  * @num: nth command entered into shell
  * @cmd: command that could not be executed
+ * @arg: arguments
  */
-void errorHandler(char *filename, int num, char *cmd)
+void errorHandler(int num, char *cmd, char *arg)
 {
 	register int len;
 	static char error[BUFSIZE];
 	char *alpha;
+	char *ptr;
 
 	alpha = itoa(num);
-	len = _strlen(filename) + _strlen(alpha) + _strlen(cmd) + 2 + 2 + 12;
-	strcat(error, filename);
-	strcat(error, ": ");
-	strcat(error, alpha);
-	strcat(error, ": ");
-	strcat(error, cmd);
-	strcat(error, ": not found\n");
-	insertNullByte(error, len);
-	write(STDOUT_FILENO, error, len);
+	_strcat(error, SHELLNAME);
+	_strcat(error, ": ");
+	_strcat(error, alpha);
+	_strcat(error, ": ");
+	_strcat(error, cmd);
+	_strcat(error, getErrorMessage());
+	if (arg)
+	{
+		_strcat(error, ": ");
+		_strcat(error, arg);
+	}
+	_strcat(error, "\n");
+	ptr = _strchr(error, '\n');
+	len = ptr - error;
+	insertNullByte(error, len + 1);
+	write(STDOUT_FILENO, error, len + 1);
 	free(alpha);
+	insertNullByte(error, 0);
+}
+
+/**
+ * getErrorMessage - print correct error message
+ * Return: string
+ */
+char *getErrorMessage()
+{
+	char *str;
+
+	switch (errno)
+	{
+		case ENOENT:
+			str = ": not found";
+			break;
+		case ENOSTRING:
+			str = ": bad variable name";
+			break;
+		case EILLEGAL:
+			str = ": illegal number";
+			break;
+		default:
+			str = "no error number assigned";
+	}
+	return (str);
 }
 
 /**
@@ -55,10 +89,7 @@ char *itoa(unsigned int num)
 	digits += countDigits(num);
 	str = malloc(sizeof(char) * (digits + 1));
 	if (!str)
-	{
-		perror("Malloc failed\n");
 		exit(errno);
-	}
 	insertNullByte(str, digits);
 	while (num > 0)
 	{
