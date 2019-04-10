@@ -42,7 +42,7 @@ int searchNode(linked_l *head, char *str)
  */
 linked_l *generateLinkedList(char **array)
 {
-	register int i;
+	register int i = 0;
 	linked_l *head;
 
 	head = NULL;
@@ -52,4 +52,41 @@ linked_l *generateLinkedList(char **array)
 		i++;
 	}
 	return (head);
+}
+
+linked_l *addNodeAtIndex(linked_l **head, int index, const char *str)
+{
+	register int i = 0;
+	linked_l *newNode, *current;
+	char *newStr;
+
+	current = *head;
+	if (!str)
+		return (NULL);
+	newNode  = malloc(sizeof(linked_l));
+	if (!newNode)
+		return (NULL);
+	newStr = _strdup(str);
+	if (!newStr)
+	{
+		free(newNode);
+		return (NULL);
+	}
+
+	newNode->string = newStr;
+	newNode->next = NULL;
+
+	while (i < index - 1)
+	{
+		if (current->next == NULL)
+		{
+			free(newNode);
+			return (NULL);
+		}
+		current = current->next;
+		i++;
+	}
+	newNode->next = current->next;
+	current->next = newNode;
+	return (newNode);
 }

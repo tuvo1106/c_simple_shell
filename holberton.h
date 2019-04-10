@@ -72,6 +72,7 @@ int cdFunc(config *);
 int setenvFunc(config *);
 int unsetenvFunc(config *);
 int _isalpha(int c);
+linked_l *addNodeAtIndex(linked_l **head, int index, const char *str);
 
 /* built_in_helpers*/
 int countArgs(char **args);
