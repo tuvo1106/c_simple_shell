@@ -87,14 +87,14 @@ size_t printList(const linked_l *h)
  * freeList - frees a linked list
  * @head: double pointer to head of list
  */
-void freeList(linked_l **head)
+void freeList(linked_l *head)
 {
 	linked_l *current;
 	linked_l *tmp;
 
 	if (!head)
 		return;
-	current = *head;
+	current = head;
 	while (current)
 	{
 		tmp = current;
@@ -102,7 +102,6 @@ void freeList(linked_l **head)
 		free(tmp->string);
 		free(tmp);
 	}
-	*head = NULL;
 	head = NULL;
 }
 
@@ -134,6 +133,7 @@ int deleteNodeAtIndex(linked_l **head, unsigned int index)
 	if (!current || !(current->next))
 		return (-1);
 	next = current->next->next;
+	free(current->next->string);
 	free(current->next);
 	current->next = next;
 	return (1);

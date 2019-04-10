@@ -6,10 +6,16 @@
  */
 int main(void)
 {
-	linked_l *env;
+	config *build;
 
+	build = malloc(sizeof(config));
 	signal(SIGINT, sigintHandler);
-	env = generateLinkedList(environ);
-	shell(env);
+	build->env = generateLinkedList(environ);
+	build->args = NULL;
+	build->buffer = NULL;
+	build->path = _getenv("PATH", environ);
+	build->fullPath = NULL;
+	build->lineCounter = 0;
+	shell(build);
 	return (EXIT_SUCCESS);
 }

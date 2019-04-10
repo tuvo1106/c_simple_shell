@@ -29,6 +29,15 @@ typedef struct linkedList
 	struct linkedList *next;
 } linked_l;
 
+typedef struct configurations
+{
+	linked_l *env;
+	char **args;
+	char *buffer;
+	char *path;
+	char *fullPath;
+	unsigned int lineCounter;
+} config;
 
 /**
  * struct builtInCommands - commands and functions associated with it
@@ -38,26 +47,26 @@ typedef struct linkedList
 typedef struct builtInCommands
 {
 	char *command;
-	int (*func)(char **args, linked_l *env, char *buffer);
+	int (*func)(config *);
 } type_b;
 
 /* built_ins */
-int builtIns(char **args, linked_l *env, char *buffer);
-int exitFunc(char **args, linked_l *env, char *buffer);
-int envFunc(char **args, linked_l *env, char *buffer);
-int historyFunc(char **args, linked_l *env, char *buffer);
-int aliasFunc(char **args, linked_l *env, char *buffer);
-int cdFunc(char **args, linked_l *env, char *buffer);
-int setenvFunc(char **args, linked_l *env, char *buffer);
-int unsetenvFunc(char **args, linked_l *env, char *buffer);
+int builtIns(config *);
+int exitFunc(config *);
+int envFunc(config *);
+int historyFunc(config *);
+int aliasFunc(config *);
+int cdFunc(config *);
+int setenvFunc(config *);
+int unsetenvFunc(config *);
 int _isalpha(int c);
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
 
 /* shell */
-void shell(linked_l *env);
-void forkAndExecute(char **args, char *fullPath, char *buffer, linked_l *env, int lineCounter);
+void shell(config *);
+void forkAndExecute(config *);
 /* _getenv */
 char *_getenv(char *input, char **environ);
 
@@ -96,7 +105,7 @@ char *_strchr(char *s, char c);
 linked_l *addNode(linked_l **head, const char *str);
 linked_l *addNodeEnd(linked_l **head, const char *str);
 size_t printList(const linked_l *h);
-void freeList(linked_l **head);
+void freeList(linked_l *head);
 int searchNode(linked_l *head, char *str);
 
 /* llfuncs2 */
@@ -112,5 +121,8 @@ int _getline(char **bufferptr, size_t *n, FILE *stream);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 char *_strcpy(char *dest, char *src);
 char *_memcpy(char *dest, char *src, unsigned int n);
+
+/* free */
+void freeAlltheThings(config *build);
 
 #endif

@@ -3,63 +3,60 @@
 /**
  * shell - simple shell
  */
-void shell(linked_l *env)
+void shell(config *build)
 {
-	register int len, builtInStatus, lineCounter = 0;
+	register int len, builtInStatus;
 	size_t bufferSize = 0;
-	char *buffer = NULL, *fullPath = NULL;
-	char *path = _getenv("PATH", environ);
-	char **args;
 
 	while (true)
 	{
-		lineCounter++;
+		build->args = NULL;
+		build->lineCounter++;
 		if (isatty(STDIN_FILENO))
 			displayPrompt();
-		len = getline(&buffer, &bufferSize, stdin);
+		len = getline(&build->buffer, &bufferSize, stdin);
 		if (len < 0)
 		{
-			free(buffer);
-			freeList(&env);
+			freeAlltheThings(build);
+			free(build);
 			if (isatty(STDIN_FILENO))
 				displayNewLine();
 			exit(0);
 		}
-		insertNullByte(buffer, len - 1);
-		args = splitString(buffer);
-		if (args == NULL)
+		insertNullByte(build->buffer, len - 1);
+		build->args = splitString(build->buffer);
+		if (build->args == NULL)
 			continue;
-		builtInStatus = builtIns(args, env, buffer);
+		builtInStatus = builtIns(build);
 		if (builtInStatus == 1)
 			continue;
-		fullPath = checkPath(args[0], path);
-		forkAndExecute(args, fullPath, buffer, env, lineCounter);
+		build->fullPath = checkPath(build->args[0], build->path);
+		forkAndExecute(build);
 	}
 }
 
-void forkAndExecute(char **args, char *fullPath, char *buffer, linked_l *env, int lineCounter)
-{	
+void forkAndExecute(config *build)
+{
 	pid_t f1;
 	int childStatus = 0;
 
 	f1 = fork();
 	if (f1 == 0)
 	{
-		childStatus = fullPath
-			? execve(fullPath, args, environ)
-			: execve(args[0], args, environ);
+		childStatus = build->fullPath
+			? execve(build->fullPath, build->args, environ)
+			: execve(build->args[0], build->args, environ);
 		if (childStatus == -1)
 		{
-			errorHandler(HSH, lineCounter, buffer);
-			free(buffer);
-			freeList(&env);
-			freeArgs(args);
+			errorHandler(HSH, build->lineCounter, build->buffer);
+			freeAlltheThings(build);
+			free(build);
 			exit(0);
 		}
 	}
 	else
 	{
 		wait(NULL);
-		freeArgs(args);
+		freeArgs(build->args);
 	}
 }

@@ -12,18 +12,19 @@ int searchNode(linked_l *head, char *str)
 	register int len = 0, index = 0, i;
 	linked_l *current;
 	char *tmp, *ptr;
-	
+
 	current = head;
 	while (current)
 	{
 		ptr = _strchr(current->string, '=');
 		len = ptr - current->string;
-		tmp = malloc(len);
+		tmp = malloc(sizeof(char) * len + 1);
 		for (i = 0; i < len; i++)
 			tmp[i] = current->string[i];
 		tmp[i] = '\0';
 		if (_strcmp(str, tmp) == 0)
-		{	free(tmp);
+		{
+			free(tmp);
 			return (index);
 		}
 		index++;

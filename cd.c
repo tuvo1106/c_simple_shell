@@ -1,8 +1,8 @@
 #include "holberton.h"
 
-int cdFunc(char **args, linked_l *env, char *buffer)
+int cdFunc(config *build)
 {
-	(void) env;
+	(void)build;
 	printf("cd placeholder\n");
 	return (1);
 }

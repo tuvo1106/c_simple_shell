@@ -5,7 +5,7 @@
 *
 * Return: 1 if found, 0 if not found
 */
-int builtIns(char **args, linked_l *env, char* buffer)
+int builtIns(config *build)
 {
 	type_b getBuiltIns[] = {
 	{"exit", exitFunc},
@@ -18,13 +18,13 @@ int builtIns(char **args, linked_l *env, char* buffer)
 	{NULL, NULL}
 	};
 
-	int index = 0;
+	register int index = 0;
 
 	while (getBuiltIns[index].command)
 	{
-		if (_strcmp(args[0], getBuiltIns[index].command) == 0)
+		if (_strcmp(build->args[0], getBuiltIns[index].command) == 0)
 		{
-			getBuiltIns[index].func(args, env, buffer);
+			getBuiltIns[index].func(build);
 			return (1);
 		}
 		index++;
@@ -38,32 +38,33 @@ int builtIns(char **args, linked_l *env, char* buffer)
 *
 * Return: 1
 */
-int exitFunc(char **args, linked_l *env, char *buffer)
+int exitFunc(config *build)
 {
 	int argCount, exitStatus;
 
-	argCount = countArgs(args);
-	free(buffer);
-	freeArgs(args);
-	freeList(&env);
+	argCount = countArgs(build->args);
+	freeAlltheThings(build);
+	free(build);
 	if (argCount == 1)
 		exit(0);
 	else if (argCount > 1)
 	{
 		/* check for valid string */
-		exitStatus = _atoi(args[1]);
+		exitStatus = _atoi(build->args[1]);
 		exit(exitStatus);
 	}
 	return (0);
 }
-int historyFunc(char **args, linked_l *env, char *buffer)
+int historyFunc(config *build)
 {
+	(void)build;
 	printf("history placeholder\n");
 	return (1);
 }
 
-int aliasFunc(char **args, linked_l *env, char *buffer)
+int aliasFunc(config *build)
 {
+	(void)build;
 	printf("alias placeholder\n");
 	return (1);
 }

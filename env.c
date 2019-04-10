@@ -6,32 +6,33 @@
  *
  * Return: 1
  */
-int envFunc(char **args, linked_l *env, char *buffer)
+int envFunc(config *build)
 {
-	printList(env);
-	freeArgs(args);
+	printList(build->env);
+	freeArgs(build->args);
 	return (1);
 }
 
-int setenvFunc(char **args, linked_l *env, char *buffer)
+int setenvFunc(config *build)
 {
+	(void)build;
 	printf("setenv placeholder\n");
 	return (1);
 }
 
-int unsetenvFunc(char **args, linked_l *env, char *buffer)
+int unsetenvFunc(config *build)
 {
 	register int foundVar, i = 1;
 	_Bool foundMatch = false;
 
-	while (args[i])
+	while (build->args[i])
 	{
-		if (_isalpha(args[i][0]) || args[i][0] == '_')
+		if (_isalpha(build->args[i][0]) || build->args[i][0] == '_')
 		{
-			foundVar = searchNode(env, args[i]);
+			foundVar = searchNode(build->env, build->args[i]);
 			if (foundVar > -1)
 			{
-				deleteNodeAtIndex(&env, foundVar);
+				deleteNodeAtIndex(&build->env, foundVar);
 				foundMatch = true;
 			}
 		}
@@ -39,6 +40,7 @@ int unsetenvFunc(char **args, linked_l *env, char *buffer)
 	}
 	if (foundMatch == false)
 		printf("Not found\n");
+	freeArgs(build->args);
 	return (1);
 }
 
