@@ -50,6 +50,7 @@ int aliasFunc(char **args, linked_l *env, char *buffer);
 int cdFunc(char **args, linked_l *env, char *buffer);
 int setenvFunc(char **args, linked_l *env, char *buffer);
 int unsetenvFunc(char **args, linked_l *env, char *buffer);
+int _isalpha(int c);
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
@@ -96,10 +97,10 @@ linked_l *addNode(linked_l **head, const char *str);
 linked_l *addNodeEnd(linked_l **head, const char *str);
 size_t printList(const linked_l *h);
 void freeList(linked_l **head);
-unsigned int searchNode(linked_l *head, char *str);
+int searchNode(linked_l *head, char *str);
 
 /* llfuncs2 */
-int delete_node_at_index(linked_l **head, unsigned int index);
+int deleteNodeAtIndex(linked_l **head, unsigned int index);
 linked_l *generateLinkedList(char **array);
 
 /* welcome */
