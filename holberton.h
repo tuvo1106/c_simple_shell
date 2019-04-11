@@ -86,6 +86,8 @@ int _atoi(char *s);
 void shell(config *);
 void checkAndGetLine(config *);
 void forkAndExecute(config *);
+void stripComments(char *str);
+
 /* _getenv */
 char *_getenv(char *input, char **environ);
 

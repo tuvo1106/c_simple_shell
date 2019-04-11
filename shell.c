@@ -13,7 +13,10 @@ void shell(config *build)
 		checkAndGetLine(build);
 		build->args = splitString(build->buffer);
 		if (build->args == NULL)
+		{
+			free(build->buffer);
 			continue;
+		}
 		builtInStatus = builtIns(build);
 		if (builtInStatus == true)
 			continue;
@@ -46,8 +49,28 @@ void checkAndGetLine(config *build)
 		exit(0);
 	}
 	insertNullByte(build->buffer, len - 1);
+	stripComments(build->buffer);
 }
 
+/**
+ * stripComments - remove comments from input string
+ * @str: input string
+ * Return: length of remaining string
+ */
+void stripComments(char *str)
+{
+	register int i = 0;
+
+	while (str[i])
+	{
+		if (str[i] == '#')
+		{
+			insertNullByte(str, i);
+			break;
+		}
+		i++;
+	}
+}
 
 /**
  * forkAndExecute - fork current build and execute processes
