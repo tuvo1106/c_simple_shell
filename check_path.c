@@ -20,14 +20,12 @@ void checkPath(config *build)
 		build->fullPath = build->args[0];
 		return;
 	}
-	if (copy && *copy == ':')
+	if (*copy == ':' && stat(build->args[0], &st) == 0)
 	{
-		if (stat(build->args[0], &st) == 0)
-		{
-			free(copy);
-			build->fullPath = build->args[0];
-			return;
-		}
+
+		free(copy);
+		build->fullPath = build->args[0];
+		return;
 	}
 	while (tok)
 	{
@@ -45,13 +43,6 @@ void checkPath(config *build)
 		insertNullByte(buffer, 0);
 		tok = _strtok(NULL, delim);
 	}
-	if (copy && *copy != ':')
-		if (stat(build->args[0], &st) == 0)
-		{
-			free(copy);
-			build->fullPath = build->args[0];
-			return;
-		}
-	build->fullPath = NULL;
+	build->fullPath = build->args[0];
 	free(copy);
 }
