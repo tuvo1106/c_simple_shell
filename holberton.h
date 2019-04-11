@@ -105,7 +105,7 @@ void displayNewLine(void);
 void sigintHandler(int sigint);
 
 /* check_path */
-char *checkPath(char *input, char *path);
+void checkPath(config *);
 
 /* split_string */
 _Bool splitString(config *);

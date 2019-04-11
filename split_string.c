@@ -3,7 +3,7 @@
 /**
  * splitString - splits string into an array of strings
  * separated by spaces
- * @str: input string
+ * @build: input build
  * Return: true if able to split, false if not
  */
 _Bool splitString(config *build)

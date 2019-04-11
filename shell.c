@@ -13,7 +13,7 @@ void shell(config *build)
 			continue;
 		if (findBuiltIns(build) == true)
 			continue;
-		build->fullPath = checkPath(build->args[0], build->path);
+		checkPath(build);
 		forkAndExecute(build);
 	}
 }
@@ -77,15 +77,13 @@ void forkAndExecute(config *build)
 	f1 = fork();
 	if (f1 == 0)
 	{
-		childStatus = build->fullPath
-			? execve(build->fullPath, build->args, environ)
-			: execve(build->args[0], build->args, environ);
+		childStatus = execve(build->fullPath, build->args, environ);
 		if (childStatus == -1)
 		{
 			errorHandler(build->lineCounter, build->buffer, NULL);
 			freeMembers(build);
 			free(build);
-			exit(0);
+			exit(EXIT_SUCCESS);
 		}
 	}
 	else
