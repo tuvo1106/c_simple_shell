@@ -1,11 +1,11 @@
 #include "holberton.h"
 
 /**
- * builtIns - find the right built in to use
+ * findBuiltIns - find the right built in to use
  * @build: input build
  * Return: 1 if found, 0 if not found
  */
-int builtIns(config *build)
+_Bool findBuiltIns(config *build)
 {
 	type_b getBuiltIns[] = {
 		{"exit", exitFunc},
@@ -25,11 +25,11 @@ int builtIns(config *build)
 		if (_strcmp(build->args[0], getBuiltIns[index].command) == 0)
 		{
 			getBuiltIns[index].func(build);
-			return (1);
+			return (true);
 		}
 		index++;
 	}
-	return (0);
+	return (false);
 }
 
 /**

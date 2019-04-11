@@ -6,37 +6,32 @@
  * @str: input string
  * Return: array of strings
  */
-char **splitString(char *str)
+void splitString(config *build)
 {
 	register unsigned int i = 0;
 	char *tok, *cpy;
-	char **res;
 
-	if (countWords(str) == 0)
-		return (NULL);
-	res = malloc((countWords(str) + 1) * sizeof(char *));
-	if (!res)
+	if (countWords(build->buffer) == 0)
 	{
-		perror("Malloc failed\n");
-		exit(errno);
+		build->args = NULL;
+		return;
 	}
-	cpy = _strdup(str);
+	build->args = malloc((countWords(build->buffer) + 1) * sizeof(char *));
+	cpy = _strdup(build->buffer);
 	if (!cpy)
 	{
-		free(res);
 		perror("Malloc failed\n");
 		exit(errno);
 	}
 	tok = _strtok(cpy, " ");
 	while (tok != NULL)
 	{
-		res[i] = _strdup(tok);
+		build->args[i] = _strdup(tok);
 		tok = _strtok(NULL, " ");
 		i++;
 	}
-	res[i] = NULL;
+	build->args[i] = NULL;
 	free(cpy);
-	return (res);
 }
 
 /**

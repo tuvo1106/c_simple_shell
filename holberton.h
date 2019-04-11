@@ -68,7 +68,7 @@ typedef struct builtInCommands
 config *configInit(config *build);
 
 /* built_ins */
-int builtIns(config *);
+_Bool findBuiltIns(config *);
 int exitFunc(config *);
 int envFunc(config *);
 int historyFunc(config *);
@@ -108,7 +108,7 @@ void sigintHandler(int sigint);
 char *checkPath(char *input, char *path);
 
 /* split_string */
-char **splitString(char *str);
+void splitString(config *);
 unsigned int countWords(char *s);
 _Bool isSpace(char c);
 

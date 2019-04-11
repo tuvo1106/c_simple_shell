@@ -6,19 +6,16 @@
  */
 void shell(config *build)
 {
-	register int builtInStatus;
-
 	while (true)
 	{
 		checkAndGetLine(build);
-		build->args = splitString(build->buffer);
+		splitString(build);
 		if (build->args == NULL)
 		{
 			free(build->buffer);
 			continue;
 		}
-		builtInStatus = builtIns(build);
-		if (builtInStatus == true)
+		if (findBuiltIns(build))
 			continue;
 		build->fullPath = checkPath(build->args[0], build->path);
 		forkAndExecute(build);
