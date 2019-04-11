@@ -31,14 +31,14 @@ int _atoi(char *s)
 	num = 0;
 
 	while (s[i])
-	{	
+	{
 		if (s[i] >= '0' && s[i] <= '9')
 			num = num * 10 + s[i] - '0';
-		else 
+		else
 			return (-1);
 		i++;
 	}
 	if (num > 2147483647)
-		return(-1);
+		return (-1);
 	return (num);
 }
