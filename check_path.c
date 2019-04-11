@@ -2,9 +2,7 @@
 
 /**
  * checkPath - searches $PATH for directory of command
- * @build->args[0]: build->args[0] command
- * @path: build->args[0] $PATH
- * Return: string of full pathname if found, NULL if not
+ * @build: input build
  */
 void checkPath(config *build)
 {
@@ -22,7 +20,6 @@ void checkPath(config *build)
 	}
 	if (*copy == ':' && stat(build->args[0], &st) == 0)
 	{
-
 		free(copy);
 		build->fullPath = build->args[0];
 		return;

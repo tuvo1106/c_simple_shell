@@ -2,9 +2,8 @@
 
 /**
 * countArgs - count the number of arguments
-* @args: arguments
-*
-* Return: number of arguments
+* @args: input array of strings
+* Return: number of strings
 */
 int countArgs(char **args)
 {
@@ -17,11 +16,9 @@ int countArgs(char **args)
 
 /**
 * _atoi - change string to an integer
-* @s: string.
-*
-* Return: an integer.
+* @s: input string
+* Return: type integer
 */
-
 int _atoi(char *s)
 {
 	register int i;
@@ -29,11 +26,10 @@ int _atoi(char *s)
 
 	i = 0;
 	num = 0;
-
 	while (s[i])
 	{
 		if (s[i] >= '0' && s[i] <= '9')
-			num = num * 10 + s[i] - '0';
+			num *= 10 + s[i] - '0';
 		else
 			return (-1);
 		i++;

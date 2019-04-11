@@ -70,13 +70,28 @@ config *configInit(config *build);
 /* built_ins */
 _Bool findBuiltIns(config *);
 int exitFunc(config *);
-int envFunc(config *);
 int historyFunc(config *);
 int aliasFunc(config *);
+
+/* cd */
 int cdFunc(config *);
+
+/* env */
+int envFunc(config *);
 int setenvFunc(config *);
 int unsetenvFunc(config *);
 int _isalpha(int c);
+
+/* help */
+int helpFunc(config *);
+int helpExit(config *);
+int helpEnv(config *);
+int helpHistory(config *);
+int helpAlias(config *);
+int helpCd(config *);
+int helpSetenv(config *);
+int helpUnsetenv(config *);
+int helpHelp(config *);
 
 /* built_in_helpers*/
 int countArgs(char **args);

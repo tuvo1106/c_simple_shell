@@ -1,9 +1,9 @@
 #include "holberton.h"
 
 /**
- * cdFunc - executes cd builtin
+ * cdFunc - execute cd builtin
  * @build: input build
- * Return: 1 on success
+ * Return: 1 on success, 0 on failure
  */
 int cdFunc(config *build)
 {

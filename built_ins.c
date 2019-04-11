@@ -1,9 +1,9 @@
 #include "holberton.h"
 
 /**
- * findBuiltIns - find the right built in to use
+ * findBuiltIns - find the right built in to execute
  * @build: input build
- * Return: 1 if found, 0 if not found
+ * Return: true if found, false if not
  */
 _Bool findBuiltIns(config *build)
 {
@@ -15,6 +15,7 @@ _Bool findBuiltIns(config *build)
 		{"cd", cdFunc},
 		{"setenv", setenvFunc},
 		{"unsetenv", unsetenvFunc},
+		{"help", helpFunc},
 		{NULL, NULL}
 	};
 
@@ -35,11 +36,11 @@ _Bool findBuiltIns(config *build)
 /**
  * exitFunc - exits the applciation
  * @build: input build
- * Return: 1 on success
+ * Return: 1 on success, 0 on failure
  */
 int exitFunc(config *build)
 {
-	int argCount, exitStatus;
+	register int argCount, exitStatus;
 
 	argCount = countArgs(build->args);
 	if (argCount == 1)
