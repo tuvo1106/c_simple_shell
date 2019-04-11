@@ -4,9 +4,9 @@
  * splitString - splits string into an array of strings
  * separated by spaces
  * @str: input string
- * Return: array of strings
+ * Return: true if able to split, false if not
  */
-void splitString(config *build)
+_Bool splitString(config *build)
 {
 	register unsigned int i = 0;
 	char *tok, *cpy;
@@ -14,7 +14,8 @@ void splitString(config *build)
 	if (countWords(build->buffer) == 0)
 	{
 		build->args = NULL;
-		return;
+		free(build->buffer);
+		return (false);
 	}
 	build->args = malloc((countWords(build->buffer) + 1) * sizeof(char *));
 	cpy = _strdup(build->buffer);
@@ -32,6 +33,7 @@ void splitString(config *build)
 	}
 	build->args[i] = NULL;
 	free(cpy);
+	return (true);
 }
 
 /**

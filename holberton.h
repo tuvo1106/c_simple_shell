@@ -108,7 +108,7 @@ void sigintHandler(int sigint);
 char *checkPath(char *input, char *path);
 
 /* split_string */
-void splitString(config *);
+_Bool splitString(config *);
 unsigned int countWords(char *s);
 _Bool isSpace(char c);
 

@@ -9,13 +9,9 @@ void shell(config *build)
 	while (true)
 	{
 		checkAndGetLine(build);
-		splitString(build);
-		if (build->args == NULL)
-		{
-			free(build->buffer);
+		if (splitString(build) == false)
 			continue;
-		}
-		if (findBuiltIns(build))
+		if (findBuiltIns(build) == true)
 			continue;
 		build->fullPath = checkPath(build->args[0], build->path);
 		forkAndExecute(build);
@@ -75,8 +71,8 @@ void stripComments(char *str)
  */
 void forkAndExecute(config *build)
 {
+	register int childStatus = 0;
 	pid_t f1;
-	int childStatus = 0;
 
 	f1 = fork();
 	if (f1 == 0)
