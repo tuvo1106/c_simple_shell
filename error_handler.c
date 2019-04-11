@@ -29,7 +29,7 @@ void errorHandler(int num, char *cmd, char *arg)
 	ptr = _strchr(error, '\n');
 	len = ptr - error;
 	insertNullByte(error, len + 1);
-	write(STDOUT_FILENO, error, len + 1);
+	write(STDERR_FILENO, error, len + 1);
 	free(alpha);
 	insertNullByte(error, 0);
 }
