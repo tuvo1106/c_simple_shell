@@ -15,7 +15,13 @@ char *checkPath(char *input, char *path)
 
 	copy = _strdup(path);
 	tok = _strtok(copy, delim);
-	while (tok && *copy != ':')
+	if (copy && *copy == ':')
+		if (stat(input, &st) == 0)
+		{
+			free(copy);
+			return (input);
+		}
+	while (tok)
 	{
 		len = _strlen(tok) + _strlen(input) + 2;
 		_strcat(buffer, tok);
@@ -30,11 +36,12 @@ char *checkPath(char *input, char *path)
 		insertNullByte(buffer, 0);
 		tok = _strtok(NULL, delim);
 	}
-	if (stat(input, &st) == 0)
-	{
-		free(copy);
-		return (input);
-	}
+	if (copy && *copy != ':')
+		if (stat(input, &st) == 0)
+		{
+			free(copy);
+			return (input);
+		}
 	free(copy);
 	return (NULL);
 }
