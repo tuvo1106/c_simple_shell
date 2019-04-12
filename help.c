@@ -20,19 +20,19 @@ int helpFunc(config *build)
 	};
 	register int i = 0, j = 1, argCount = countArgs(build->args);
 	_Bool foundCommand = false;
-	char str[81] = "Type help [built-in]\n\nIncluded built-ins:";
-	char *str2;
+	char str[81] = "Type help [built-in]\n\nIncluded built-ins:", *str2;
+
 	if (argCount == 1)
 	{
 		str2 = "\n\n\texit\n\tenv\n\tcd\n\tsetenv\n\tunsetenv\n\thelp\n";
-		_strcat(str,str2);
-		write(1, str, 82);
+		_strcat(str, str2);
+		write(STDOUT_FILENO, str, 82);
 		freeArgs(build->args);
 		free(build->buffer);
 		return (0);
 	}
 	while (j < argCount)
-	{ 
+	{
 		i = 0;
 		while (help_arr[i].command)
 		{
@@ -81,7 +81,8 @@ int helpEnv(config *build)
 {
 	(void)build;
 	char *str = "env: env\n\tPrint the environment.\n";
-	write(1, str, 33);
+
+	write(STDOUT_FILENO, str, 33);
 	return (0);
 }
 
@@ -94,7 +95,8 @@ int helpHistory(config *build)
 {
 	(void)build;
 	char *str = "history: history\n\tNot supported in this version.\n";
-	write(1, str, 49);
+
+	write(STDOUT_FILENO, str, 49);
 	return (0);
 }
 
@@ -107,6 +109,7 @@ int helpAlias(config *build)
 {
 	(void)build;
 	char *str = "alias: alias\n\tNot supported in this version.\n";
-	write(1, str, 45);
+
+	write(STDOUT_FILENO, str, 45);
 	return (0);
 }

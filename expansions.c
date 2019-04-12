@@ -1,10 +1,14 @@
 #include "holberton.h"
 
+/**
+ * expansions - expand variables with $ to its environmental var
+ * @build: input build
+ */
 void expansions(config *build)
 {
-	register uint llIndex, i = 0;
-	int oldLen, newLen;
-	char *str = NULL, *ptr, *copy;
+	register int llIndex, i = 0;
+	/* int oldLen, newLen; */
+	char *str = NULL, *ptr;
 	_Bool found = false;
 
 	while (build->args[i])
@@ -33,5 +37,4 @@ void expansions(config *build)
 	{
 		free(str);
 	}
-	return;
 }

@@ -9,7 +9,7 @@ int helpCd(config *build)
 {
 	(void)build;
 	printf("cd placeholder");
-	return (0);
+	return (1);
 }
 
 /**
@@ -23,13 +23,15 @@ int helpSetenv(config *build)
 	char str[186] = "setenv: setenv [var] [value]\n\t";
 	char *str2 = "Set or update a variable in the environment.\n\n\t";
 	char *str3 = "Creates a variable [var] with [value]. ";
-	char *str4 = "If the [var] already exists in the environment, the value is updated.\n";
-	
+	char *str4 = "If the [var] already exists in the environment, ";
+	char *str5 = "the value is updated.\n";
+
 	_strcat(str, str2);
 	_strcat(str, str3);
 	_strcat(str, str4);
-	write(1, str, 186);
-	return (0);
+	_strcat(str, str5);
+	write(STDOUT_FILENO, str, 186);
+	return (1);
 }
 
 /**
@@ -44,10 +46,10 @@ int helpUnsetenv(config *build)
 	char *str2 = "Unset a variable in the environment.\n\n\t";
 	char *str3 = "[var] is an existing variable in the environment.\n";
 
-	_strcat(str,str2);
-	_strcat(str,str3);
-	write(1, str, 116);
-	return (0);
+	_strcat(str, str2);
+	_strcat(str, str3);
+	write(STDOUT_FILENO, str, 116);
+	return (1);
 }
 
 /**
@@ -60,10 +62,10 @@ int helpHelp(config *build)
 	(void)build;
 	char str[129] = "help: help [built-in]\n\t";
 	char *str2 = "Display information about built-in commands.\n\n\t";
-	char *str3 ="If [built-in] is not specified, print a list of built-ins.\n";
+	char *str3 = "If [built-in] is not specified, print a list of built-ins.\n";
 
 	_strcat(str, str2);
 	_strcat(str, str3);
-	write(1, str, 129);
-	return (0);
+	write(STDOUT_FILENO, str, 129);
+	return (1);
 }

@@ -121,5 +121,5 @@ char *getNodeAtIndex(linked_l *head, unsigned int index)
 		count++;
 		current = current->next;
 	}
-	return (current);
+	return (NULL);
 }
