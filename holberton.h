@@ -20,7 +20,7 @@
 #define ENOSTRING 1106
 #define EILLEGAL 227
 #define EWSIZE 410
-
+#define ENOBUILTIN 415
 extern char **environ;
 
 /**

@@ -20,10 +20,13 @@ int helpFunc(config *build)
 	};
 	register int i = 0, j = 1, argCount = countArgs(build->args);
 	_Bool foundCommand = false;
-
+	char str[81] = "Type help [built-in]\n\nIncluded built-ins:";
+	char *str2;
 	if (argCount == 1)
 	{
-		printf("Help command instructions\n");
+		str2 = "\n\n\texit\n\tenv\n\tcd\n\tsetenv\n\tunsetenv\n\thelp\n";
+		_strcat(str,str2);
+		write(1, str, 82);
 		freeArgs(build->args);
 		free(build->buffer);
 		return (0);
@@ -45,6 +48,7 @@ int helpFunc(config *build)
 	}
 	if (foundCommand == false)
 	{
+		errno = ENOBUILTIN;
 		errorHandler(build->lineCounter, build->args[1], NULL);
 	}
 	freeArgs(build->args);

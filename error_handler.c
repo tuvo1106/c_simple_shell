@@ -56,6 +56,9 @@ char *getErrorMessage()
 		case EWSIZE:
 			str = ": invalid number of arguments";
 			break;
+		case ENOBUILTIN:
+			str = ": type help for a list of built-ins";
+			break;
 		default:
 			str = "no error number assigned";
 	}
