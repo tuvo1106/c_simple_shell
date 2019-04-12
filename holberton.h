@@ -164,6 +164,8 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 /* free */
 void freeMembers(config *build);
 
+/* expansions */
 void varExpansions(config *build);
+void expansions(config *build);
 
 #endif

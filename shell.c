@@ -13,6 +13,7 @@ void shell(config *build)
 			continue;
 		if (findBuiltIns(build) == true)
 			continue;
+		expansions(build);
 		varExpansions(build);
 		checkPath(build);
 		forkAndExecute(build);
@@ -65,44 +66,6 @@ void stripComments(char *str)
 		i++;
 	}
 }
-
-/**
- * varExpansions - expands env variable expansions for $$ and $?
- * @build: config build
- */
-void varExpansions(config *build)
-{
-	register int i = 0, pLen, eLen;
-	pid_t ppid = getppid();
-	char *ppidStr = itoa((unsigned int)ppid);
-	char *errStr = itoa((unsigned int)errno);
-	char *ppidCopy, *errCopy;
-
-	pLen = _strlen(ppidStr);
-	eLen = _strlen(errStr);
-	while (build->args[i])
-	{
-		if (strcmp(build->args[i], "$$") == 0)
-		{
-			ppidCopy = strdup(build->args[i]);
-			ppidCopy = _realloc(ppidCopy, 2, pLen + 1);
-			_strcpy(ppidCopy, ppidStr);
-			free(build->args[i]);
-			build->args[i] = ppidCopy;
-		} else if (strcmp(build->args[i], "$?") == 0)
-		{
-			errCopy = strdup(build->args[i]);
-			errCopy = _realloc(errCopy, 2, eLen + 1);
-			_strcpy(errCopy, errStr);
-			free(build->args[i]);
-			build->args[i] = errCopy;
-		}
-		i++;
-	}
-	free(errStr);
-	free(ppidStr);
-}
-
 
 /**
  * forkAndExecute - fork current build and execute processes

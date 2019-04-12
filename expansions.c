@@ -1,14 +1,51 @@
 #include "holberton.h"
 
 /**
+ * varExpansions - expands env variable expansions for $$ and $?
+ * @build: config build
+ */
+void varExpansions(config *build)
+{
+	register int i = 0, pLen, eLen;
+	pid_t ppid = getppid();
+	char *ppidStr = itoa((unsigned int)ppid);
+	char *errStr = itoa((unsigned int)errno);
+	char *ppidCopy, *errCopy;
+
+	pLen = _strlen(ppidStr);
+	eLen = _strlen(errStr);
+	while (build->args[i])
+	{
+		if (strcmp(build->args[i], "$$") == 0)
+		{
+			ppidCopy = strdup(build->args[i]);
+			ppidCopy = _realloc(ppidCopy, 2, pLen + 1);
+			_strcpy(ppidCopy, ppidStr);
+			free(build->args[i]);
+			build->args[i] = ppidCopy;
+		} else if (strcmp(build->args[i], "$?") == 0)
+		{
+			errCopy = strdup(build->args[i]);
+			errCopy = _realloc(errCopy, 2, eLen + 1);
+			_strcpy(errCopy, errStr);
+			free(build->args[i]);
+			build->args[i] = errCopy;
+		}
+		i++;
+	}
+	free(errStr);
+	free(ppidStr);
+}
+
+/**
  * expansions - expand variables with $ to its environmental var
  * @build: input build
  */
 void expansions(config *build)
 {
 	register int llIndex, i = 0;
-	/* int oldLen, newLen; */
-	char *str = NULL, *ptr;
+	char *str = NULL, *ptr = NULL;
+	int oldLen;
 	_Bool found = false;
 
 	while (build->args[i])
@@ -16,7 +53,10 @@ void expansions(config *build)
 		if (build->args[i][0] == '$')
 		{
 			ptr = strdup(build->args[i]);
+			ptr++;
+			oldLen = _strlen(ptr);
 			llIndex = searchNode(build->env, ptr);
+			free(--ptr);
 			if (llIndex >= 0)
 			{
 				found = true;
@@ -25,16 +65,12 @@ void expansions(config *build)
 		}
 		i++;
 	}
-
-	if (found == true)
+	if (found)
 	{
 		str = getNodeAtIndex(build->env, llIndex);
-		str += 5;
-		build->args[i] = realloc(build->args[i], _strlen(str) + 1);
+		str += oldLen + 1;
+		build->args[i] = _realloc(build->args[i], oldLen, _strlen(str) + 1);
 		strcpy(build->args[i], str);
-		free(str - 5);
-	} else
-	{
-		free(str);
+		free(str - oldLen - 1);
 	}
 }
