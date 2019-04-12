@@ -97,3 +97,29 @@ linked_l *addNodeAtIndex(linked_l **head, int index, char *str)
 	current->next = newNode;
 	return (newNode);
 }
+
+/**
+ * getNodeAtIndex - returns the nth node of a listint_t linked list
+ * @head: pointer to head of list
+ * @index: index of value to be returned
+ * Return: address of node at input index
+ */
+char *getNodeAtIndex(linked_l *head, unsigned int index)
+{
+	register uint count = 0;
+	linked_l *current;
+	char *ptr;
+
+	current = head;
+	while (current)
+	{
+		if (count == index)
+		{
+			ptr = _strdup(current->string);
+			return (ptr);
+		}
+		count++;
+		current = current->next;
+	}
+	return (current);
+}
