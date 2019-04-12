@@ -149,6 +149,7 @@ int searchNode(linked_l *head, char *str);
 int deleteNodeAtIndex(linked_l **head, unsigned int index);
 linked_l *generateLinkedList(char **array);
 linked_l *addNodeAtIndex(linked_l **head, int index, char *str);
+char *getNodeAtIndex(linked_l *head, unsigned int index);
 
 /* welcome */
 void welcome_screen_1(void);
