@@ -149,6 +149,7 @@ int searchNode(linked_l *head, char *str);
 int deleteNodeAtIndex(linked_l **head, unsigned int index);
 linked_l *generateLinkedList(char **array);
 linked_l *addNodeAtIndex(linked_l **head, int index, char *str);
+
 /* welcome */
 void welcome_screen_1(void);
 void welcome_screen_2(void);
@@ -161,5 +162,7 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 
 /* free */
 void freeMembers(config *build);
+
+void varExpansions(config *build);
 
 #endif

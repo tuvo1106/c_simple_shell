@@ -54,6 +54,13 @@ linked_l *generateLinkedList(char **array)
 	return (head);
 }
 
+/**
+ * addNodeAtIndex - add node at index with string
+ * @head: double pointer to head
+ * @index: index to add at
+ * @str: string to add
+ * Return: address of node added
+ */
 linked_l *addNodeAtIndex(linked_l **head, int index, char *str)
 {
 	register int i = 0;
