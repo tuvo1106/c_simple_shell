@@ -18,25 +18,30 @@ int helpFunc(config *build)
 		{"help", helpHelp},
 		{NULL, NULL}
 	};
-	register int i = 0;
+	register int i = 0, j = 1, argCount = countArgs(build->args);
 	_Bool foundCommand = false;
 
-	if (countArgs(build->args) != 2)
+	if (argCount == 1)
 	{
-		printf("Invalid arguments\n");
+		printf("Help command instructions\n");
 		freeArgs(build->args);
 		free(build->buffer);
 		return (0);
 	}
-	while (help_arr[i].command)
-	{
-		if (_strcmp(build->args[1], help_arr[i].command) == 0)
+	while (j < argCount)
+	{ 
+		i = 0;
+		while (help_arr[i].command)
 		{
-			foundCommand = true;
-			help_arr[i].func(build);
-			break;
+			if (_strcmp(build->args[j], help_arr[i].command) == 0)
+			{
+				foundCommand = true;
+				help_arr[i].func(build);
+				break;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
 	if (foundCommand == false)
 	{
@@ -55,7 +60,11 @@ int helpFunc(config *build)
 int helpExit(config *build)
 {
 	(void)build;
-	printf("HERE IS HOW TO EXIT...\n");
+	char str[82] = "exit: exit [n]\n\tExit the shell.\n\n\t";
+	char *str2 = "Exit with a status of n, or if n is omitted, 0.\n";
+
+	_strcat(str, str2);
+	write(1, str, 82);
 	return (0);
 }
 
@@ -67,7 +76,8 @@ int helpExit(config *build)
 int helpEnv(config *build)
 {
 	(void)build;
-	printf("HERE IS HOW TO ENV...\n");
+	char *str = "env: env\n\tPrint the environment.\n";
+	write(1, str, 33);
 	return (0);
 }
 
@@ -79,7 +89,8 @@ int helpEnv(config *build)
 int helpHistory(config *build)
 {
 	(void)build;
-	printf("HERE IS HOW TO HISTORY...\n");
+	char *str = "history: history\n\tNot supported in this version.\n";
+	write(1, str, 49);
 	return (0);
 }
 
@@ -91,6 +102,7 @@ int helpHistory(config *build)
 int helpAlias(config *build)
 {
 	(void)build;
-	printf("HERE IS HOW TO ALIAS...\n");
+	char *str = "alias: alias\n\tNot supported in this version.\n";
+	write(1, str, 45);
 	return (0);
 }
