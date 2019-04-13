@@ -22,7 +22,8 @@ void errorHandler(int num, char *cmd, char *arg)
 	_strcat(error, getErrorMessage());
 	if (arg)
 	{
-		_strcat(error, ": ");
+		if (errno != EBADCD)
+			_strcat(error, ": ");
 		_strcat(error, arg);
 	}
 	_strcat(error, "\n");
@@ -44,6 +45,9 @@ char *getErrorMessage()
 
 	switch (errno)
 	{
+		case EBADCD:
+			str = ": cant cd to";
+			break;
 		case ENOENT:
 			str = ": not found";
 			break;

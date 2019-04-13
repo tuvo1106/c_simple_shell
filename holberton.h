@@ -21,6 +21,8 @@
 #define EILLEGAL 227
 #define EWSIZE 410
 #define ENOBUILTIN 415
+#define EBADCD 726
+
 extern char **environ;
 
 /**
@@ -75,6 +77,9 @@ int aliasFunc(config *);
 
 /* cd */
 int cdFunc(config *);
+_Bool cdToHome(config *build);
+_Bool cdToPrevious(config *build);
+_Bool cdToCustom(config *build);
 
 /* env */
 int envFunc(config *);
