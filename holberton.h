@@ -123,7 +123,6 @@ char *itoa(unsigned int num);
 char *getErrorMessage();
 
 /* shell_helpers */
-void freeArgs(char **args);
 void insertNullByte(char *str, unsigned int index);
 void displayPrompt(void);
 void displayNewLine(void);
@@ -152,7 +151,6 @@ char *_strchr(char *s, char c);
 linked_l *addNode(linked_l **head, const char *str);
 linked_l *addNodeEnd(linked_l **head, const char *str);
 size_t printList(const linked_l *h);
-void freeList(linked_l *head);
 int searchNode(linked_l *head, char *str);
 
 /* llfuncs2 */
@@ -173,6 +171,9 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 
 /* free */
 void freeMembers(config *build);
+void freeArgsAndBuffer(config *build);
+void freeArgs(char **args);
+void freeList(linked_l *head);
 
 /* expansions */
 void checkExpansions(config *build);

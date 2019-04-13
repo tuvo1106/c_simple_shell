@@ -8,8 +8,6 @@
 int envFunc(config *build)
 {
 	printList(build->env);
-	freeArgs(build->args);
-	free(build->buffer);
 	return (1);
 }
 
@@ -28,8 +26,6 @@ int setenvFunc(config *build)
 	{
 		errno = EWSIZE;
 		errorHandler(build->lineCounter, build->args[0], NULL);
-		freeArgs(build->args);
-		free(build->buffer);
 		return (1);
 	}
 	len = _strlen(build->args[1]) + _strlen(build->args[2]) + 2;
@@ -42,18 +38,13 @@ int setenvFunc(config *build)
 	{
 		addNodeEnd(&build->env, buffer);
 		insertNullByte(buffer, 0);
-		freeArgs(build->args);
-		free(build->buffer);
 		return (1);
-	}
-	else
+	} else
 	{
 		deleteNodeAtIndex(&build->env, index);
 		addNodeAtIndex(&build->env, index, buffer);
 	}
 	insertNullByte(buffer, 0);
-	freeArgs(build->args);
-	free(build->buffer);
 	return (1);
 }
 
@@ -86,8 +77,6 @@ int unsetenvFunc(config *build)
 		errno = ENOSTRING;
 		errorHandler(build->lineCounter, build->buffer, NULL);
 	}
-	freeArgs(build->args);
-	free(build->buffer);
 	return (1);
 }
 

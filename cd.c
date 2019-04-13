@@ -19,8 +19,6 @@ int cdFunc(config *build)
 		ableToChange = cdToCustom(build);
 	if (ableToChange)
 		updateEnviron(build);
-	freeArgs(build->args);
-	free(build->buffer);
 	return (1);
 }
 

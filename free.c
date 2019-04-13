@@ -14,3 +14,47 @@ void freeMembers(config *build)
 		free(build->buffer);
 }
 
+/**
+ *
+ *
+ */
+void freeArgsAndBuffer(config *build)
+{
+	freeArgs(build->args);
+	free(build->buffer);
+}
+
+/**
+ * freeList - frees a linked list
+ * @head: double pointer to head of list
+ */
+void freeList(linked_l *head)
+{
+	linked_l *current;
+	linked_l *tmp;
+
+	if (!head)
+		return;
+	current = head;
+	while (current)
+	{
+		tmp = current;
+		current = tmp->next;
+		free(tmp->string);
+		free(tmp);
+	}
+	head = NULL;
+}
+
+/**
+ * freeArgs - helper func that frees double pointer arg
+ * @args: array of char pointers
+ */
+void freeArgs(char **args)
+{
+	register uint index = 0;
+
+	while (args[index])
+		free(args[index++]);
+	free(args);
+}

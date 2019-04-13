@@ -27,9 +27,7 @@ int helpFunc(config *build)
 		str2 = "\n\n\texit\n\tenv\n\tcd\n\tsetenv\n\tunsetenv\n\thelp\n";
 		_strcat(str, str2);
 		write(STDOUT_FILENO, str, 82);
-		freeArgs(build->args);
-		free(build->buffer);
-		return (0);
+		return (1);
 	}
 	while (j < argCount)
 	{
@@ -51,8 +49,6 @@ int helpFunc(config *build)
 		errno = ENOBUILTIN;
 		errorHandler(build->lineCounter, build->args[1], NULL);
 	}
-	freeArgs(build->args);
-	free(build->buffer);
 	return (1);
 }
 

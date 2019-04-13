@@ -26,6 +26,7 @@ _Bool findBuiltIns(config *build)
 		if (_strcmp(build->args[0], getBuiltIns[index].command) == 0)
 		{
 			getBuiltIns[index].func(build);
+			freeArgsAndBuffer(build);
 			return (true);
 		}
 		index++;
@@ -56,8 +57,6 @@ int exitFunc(config *build)
 		{
 			errno = EILLEGAL;
 			errorHandler(build->lineCounter, build->args[0], build->args[1]);
-			freeArgs(build->args);
-			free(build->buffer);
 			return (0);
 		}
 		freeMembers(build);
@@ -74,8 +73,10 @@ int exitFunc(config *build)
  */
 int historyFunc(config *build)
 {
+	char *str = "Currently in development\n";
+
 	(void)build;
-	printf("history placeholder\n");
+	write(STDOUT_FILENO, str, _strlen(str));
 	return (1);
 }
 
@@ -86,8 +87,9 @@ int historyFunc(config *build)
  */
 int aliasFunc(config *build)
 {
+	char *str = "Currently in development\n";
+
 	(void)build;
-	printf("alias placeholder\n");
+	write(STDOUT_FILENO, str, _strlen(str));
 	return (1);
 }
-
