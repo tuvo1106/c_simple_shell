@@ -1,6 +1,17 @@
 #include "holberton.h"
 
 /**
+ * checkExpansions - helper function that delegates
+ * environmental and special variable expansions
+ * @build: input build
+ */
+void checkExpansions(config *build)
+{
+	envExpansions(build);
+	varExpansions(build);
+}
+
+/**
  * varExpansions - expands env variable expansions for $$ and $?
  * @build: config build
  */
@@ -19,14 +30,14 @@ void varExpansions(config *build)
 		if (strcmp(build->args[i], "$$") == 0)
 		{
 			ppidCopy = strdup(build->args[i]);
-			ppidCopy = _realloc(ppidCopy, 2, pLen + 1);
+			ppidCopy = _realloc(ppidCopy, _strlen(ppidCopy), pLen + 2);
 			_strcpy(ppidCopy, ppidStr);
 			free(build->args[i]);
 			build->args[i] = ppidCopy;
 		} else if (strcmp(build->args[i], "$?") == 0)
 		{
 			errCopy = strdup(build->args[i]);
-			errCopy = _realloc(errCopy, 2, eLen + 1);
+			errCopy = _realloc(errCopy, _strlen(errCopy), eLen + 2);
 			_strcpy(errCopy, errStr);
 			free(build->args[i]);
 			build->args[i] = errCopy;
@@ -38,10 +49,10 @@ void varExpansions(config *build)
 }
 
 /**
- * expansions - expand variables with $ to its environmental var
+ * envExpansions - expand variables with $ to its environmental var
  * @build: input build
  */
-void expansions(config *build)
+void envExpansions(config *build)
 {
 	register int llIndex, i = 0;
 	char *str = NULL, *ptr = NULL;
