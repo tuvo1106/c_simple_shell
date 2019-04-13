@@ -8,43 +8,27 @@
 int cdFunc(config *build)
 {
 	register uint count = 0;
-	int pwdIndex = 0, index = 0, len = 0;
-	_Bool ableToChange = true;
-	char *current = NULL;
-	static char old[BUFSIZE], tmp[BUFSIZE], cwd[BUFSIZE];
+	_Bool ableToChange = false;
 
 	count = countArgs(build->args);
 	if (count == 1)
 		ableToChange = cdToHome(build);
-	else if ((count == 2) && (_strcmp(build->args[1], "-") == 0))
+	else if (count == 2 && _strcmp(build->args[1], "-") == 0)
 		ableToChange = cdToPrevious(build);
-	else if (count > 1)
+	else
 		ableToChange = cdToCustom(build);
 	if (ableToChange)
-	{
-		pwdIndex = searchNode(build->env, "PWD");
-		current = getNodeAtIndex(build->env, pwdIndex);
-		_strcat(old, "OLD");
-		_strcat(old, current);
-		insertNullByte(old, _strlen(current) + 4);
-		index = searchNode(build->env, "OLDPWD");
-		deleteNodeAtIndex(&build->env, index);
-		addNodeAtIndex(&build->env, index, old);
-		deleteNodeAtIndex(&build->env, pwdIndex);
-		getcwd(tmp, BUFSIZE);
-		_strcat(cwd, "PWD=");
-		_strcat(cwd, tmp);
-		addNodeAtIndex(&build->env, pwdIndex, cwd);
-	}
-	free(current);
+		updateEnviron(build);
 	freeArgs(build->args);
 	free(build->buffer);
-	insertNullByte(old, 0);
-	insertNullByte(tmp, 0);
-	insertNullByte(cwd, 0);
 	return (1);
 }
 
+/**
+ * cdToHome - change directory to home
+ * @build: input build
+ * Return: true on success, false on failure
+ */
 _Bool cdToHome(config *build)
 {
 	register int index;
@@ -64,6 +48,12 @@ _Bool cdToHome(config *build)
 	return (true);
 }
 
+/**
+ * cdToPrevious - change directory to previous directory -
+ * address is found in OLDPWD env var
+ * @build: input build
+ * Return: true on success, false on failure
+ */
 _Bool cdToPrevious(config *build)
 {
 	register int index;
@@ -83,9 +73,14 @@ _Bool cdToPrevious(config *build)
 	return (true);
 }
 
+/**
+ * cdToCustom - change directory to what user inputs in
+ * @build: input build
+ * Return: true on success, false on failure
+ */
 _Bool cdToCustom(config *build)
 {
-	int changeStatus;
+	register int changeStatus;
 
 	changeStatus = chdir(build->args[1]);
 	if (changeStatus == -1)
@@ -97,4 +92,18 @@ _Bool cdToCustom(config *build)
 	return (true);
 }
 
+/**
+ * updateEnviron - change environmental variables
+ * @build: input build
+ * Return: true on success false on failure
+ */
+_Bool updateEnviron(config *build)
+{
+	register int index;
+
+	index = updateOld(build);
+	if (index > -1)
+		return (updateCur(build, index));
+	return (false);
+}
 

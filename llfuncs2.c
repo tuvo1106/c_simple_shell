@@ -123,10 +123,3 @@ char *getNodeAtIndex(linked_l *head, unsigned int index)
 	}
 	return (NULL);
 }
-
-/*
-void modifyNodeAtIndex(linked_l *head, unsigned int index, char *newString)
-{
-
-
-} */

@@ -80,6 +80,11 @@ int cdFunc(config *);
 _Bool cdToHome(config *build);
 _Bool cdToPrevious(config *build);
 _Bool cdToCustom(config *build);
+_Bool updateEnviron(config *build);
+
+/* cd2 */
+int updateOld(config *build);
+_Bool updateCur(config *build, int index);
 
 /* env */
 int envFunc(config *);
