@@ -144,6 +144,7 @@ int _strlen(char *s);
 char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strdup(char *str);
+char *_strcpy(char *dest, char *src);
 
 /* string_helpers2 */
 char *_strtok(char *str, char *delim);
@@ -166,10 +167,8 @@ char *getNodeAtIndex(linked_l *head, unsigned int index);
 void welcome_screen_1(void);
 void welcome_screen_2(void);
 
-/* _getline */
-int _getline(char **bufferptr, size_t *n, FILE *stream);
+/* _realloc */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char *_strcpy(char *dest, char *src);
 char *_memcpy(char *dest, char *src, unsigned int n);
 
 /* free */
