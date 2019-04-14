@@ -6,7 +6,7 @@
  * @str: string to be added on new node
  * Return: address of new head;
  */
-linked_l *addNode(linked_l **head, const char *str)
+linked_l *addNode(linked_l **head, char *str)
 {
 	linked_l *newNode;
 	char *newStr;
@@ -16,7 +16,7 @@ linked_l *addNode(linked_l **head, const char *str)
 	newNode = malloc(sizeof(linked_l));
 	if (!newNode)
 		return (NULL);
-	newStr = strdup(str);
+	newStr = _strdup(str);
 	if (!newStr)
 	{
 		free(newNode);
@@ -34,7 +34,7 @@ linked_l *addNode(linked_l **head, const char *str)
  * @str: string to be added to linked list
  * Return: address of new node
  */
-linked_l *addNodeEnd(linked_l **head, const char *str)
+linked_l *addNodeEnd(linked_l **head, char *str)
 {
 	linked_l *newNode;
 	linked_l *last = *head;
@@ -45,7 +45,7 @@ linked_l *addNodeEnd(linked_l **head, const char *str)
 	newNode = malloc(sizeof(linked_l));
 	if (!newNode)
 		return (NULL);
-	newStr = strdup(str);
+	newStr = _strdup(str);
 	if (!newStr)
 	{
 		free(newNode);
@@ -75,7 +75,8 @@ size_t printList(const linked_l *h)
 
 	while (h)
 	{
-		printf("%s\n", h->string);
+		write(STDOUT_FILENO, h->string, _strlen(h->string));
+		displayNewLine();
 		h = h->next;
 		count++;
 	}

@@ -151,8 +151,8 @@ int _strcspn(char *string, char *chars);
 char *_strchr(char *s, char c);
 
 /* llfuncs1 */
-linked_l *addNode(linked_l **head, const char *str);
-linked_l *addNodeEnd(linked_l **head, const char *str);
+linked_l *addNode(linked_l **head, char *str);
+linked_l *addNodeEnd(linked_l **head, char *str);
 size_t printList(const linked_l *h);
 int searchNode(linked_l *head, char *str);
 
