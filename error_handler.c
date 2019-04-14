@@ -36,10 +36,10 @@ void errorHandler(int num, char *cmd, char *arg)
 }
 
 /**
- * getErrorMessage - print correct error message
- * Return: string
+ * getErrorMessage - matches errno to corresponding string
+ * Return: string of error message
  */
-char *getErrorMessage()
+char *getErrorMessage(void)
 {
 	char *str;
 

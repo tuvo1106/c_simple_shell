@@ -28,7 +28,7 @@ int _getline(char **bufferptr, size_t *n, FILE *stream)
 	ptr = _strchr(buffer, '\n');
 	if (ptr)
 		*++ptr = '\0';
-	len = strlen(buffer);
+	len = _strlen(buffer);
 	if ((len + 1) < 1024)
 	{
 		ptr = _realloc(*bufferptr, 0, len + 1);

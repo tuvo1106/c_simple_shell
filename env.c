@@ -1,9 +1,9 @@
 #include "holberton.h"
 
 /**
- * envFunc - print all the environment variables
+ * envFunc - prints all the environment variables
  * @build: input build
- * Return: 1 on success
+ * Return: 1 on success, 0 on failure
  */
 int envFunc(config *build)
 {
@@ -15,7 +15,7 @@ int envFunc(config *build)
  * setenvFunc - adds env variable if it does not exist;
  * modify env variable if it does
  * @build: input build
- * Return: 1 on success
+ * Return: 1 on success, 0 on failure
  */
 int setenvFunc(config *build)
 {
@@ -39,11 +39,9 @@ int setenvFunc(config *build)
 		addNodeEnd(&build->env, buffer);
 		insertNullByte(buffer, 0);
 		return (1);
-	} else
-	{
-		deleteNodeAtIndex(&build->env, index);
-		addNodeAtIndex(&build->env, index, buffer);
 	}
+	deleteNodeAtIndex(&build->env, index);
+	addNodeAtIndex(&build->env, index, buffer);
 	insertNullByte(buffer, 0);
 	return (1);
 }
@@ -52,7 +50,7 @@ int setenvFunc(config *build)
  * unsetenvFunc - deletes env variable if exists;
  * will only accept valid variables names
  * @build: input build
- * Return: 1 on success
+ * Return: 1 on success, 0 on failure
  */
 int unsetenvFunc(config *build)
 {

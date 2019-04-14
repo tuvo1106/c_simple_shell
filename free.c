@@ -15,8 +15,8 @@ void freeMembers(config *build)
 }
 
 /**
- *
- *
+ * freeArgsAndBuffer - frees args and buffer
+ * @build: input build
  */
 void freeArgsAndBuffer(config *build)
 {

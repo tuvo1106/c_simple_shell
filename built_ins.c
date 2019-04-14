@@ -1,12 +1,13 @@
 #include "holberton.h"
 
 /**
- * findBuiltIns - find the right built in to execute
+ * findBuiltIns - validates if command is builtin and executes
  * @build: input build
  * Return: true if found, false if not
  */
 _Bool findBuiltIns(config *build)
 {
+	register int index = 0;
 	type_b getBuiltIns[] = {
 		{"exit", exitFunc},
 		{"env", envFunc},
@@ -18,8 +19,6 @@ _Bool findBuiltIns(config *build)
 		{"help", helpFunc},
 		{NULL, NULL}
 	};
-
-	register int index = 0;
 
 	while (getBuiltIns[index].command)
 	{
@@ -35,7 +34,7 @@ _Bool findBuiltIns(config *build)
 }
 
 /**
- * exitFunc - exits the applciation
+ * exitFunc - exits the application
  * @build: input build
  * Return: 1 on success, 0 on failure
  */

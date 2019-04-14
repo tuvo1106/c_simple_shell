@@ -94,9 +94,12 @@ int _isalpha(int c);
 
 /* help */
 int helpFunc(config *);
+int displayHelpMenu(void);
 int helpExit(config *);
 int helpEnv(config *);
 int helpHistory(config *);
+
+/* help2 */
 int helpAlias(config *);
 int helpCd(config *);
 int helpSetenv(config *);

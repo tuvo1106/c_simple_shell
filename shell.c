@@ -86,7 +86,6 @@ void forkAndExecute(config *build)
 	} else
 	{
 		wait(NULL);
-		freeArgs(build->args);
-		free(build->buffer);
+		freeArgsAndBuffer(build);
 	}
 }

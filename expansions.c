@@ -27,14 +27,14 @@ void varExpansions(config *build)
 	eLen = _strlen(errStr);
 	while (build->args[i])
 	{
-		if (strcmp(build->args[i], "$$") == 0)
+		if (_strcmp(build->args[i], "$$") == 0)
 		{
 			ppidCopy = strdup(build->args[i]);
 			ppidCopy = _realloc(ppidCopy, _strlen(ppidCopy), pLen + 2);
 			_strcpy(ppidCopy, ppidStr);
 			free(build->args[i]);
 			build->args[i] = ppidCopy;
-		} else if (strcmp(build->args[i], "$?") == 0)
+		} else if (_strcmp(build->args[i], "$?") == 0)
 		{
 			errCopy = strdup(build->args[i]);
 			errCopy = _realloc(errCopy, _strlen(errCopy), eLen + 2);
@@ -63,7 +63,7 @@ void envExpansions(config *build)
 	{
 		if (build->args[i][0] == '$')
 		{
-			ptr = strdup(build->args[i]);
+			ptr = _strdup(build->args[i]);
 			ptr++;
 			oldLen = _strlen(ptr);
 			llIndex = searchNode(build->env, ptr);
@@ -81,7 +81,7 @@ void envExpansions(config *build)
 		str = getNodeAtIndex(build->env, llIndex);
 		str += oldLen + 1;
 		build->args[i] = _realloc(build->args[i], oldLen, _strlen(str) + 1);
-		strcpy(build->args[i], str);
+		_strcpy(build->args[i], str);
 		free(str - oldLen - 1);
 	}
 }
