@@ -52,9 +52,9 @@ void freeList(linked_l *head)
  */
 void freeArgs(char **args)
 {
-	register uint index = 0;
+	register uint i = 0;
 
-	while (args[index])
-		free(args[index++]);
+	while (args[i])
+		free(args[i++]);
 	free(args);
 }

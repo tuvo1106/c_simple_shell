@@ -29,14 +29,14 @@ void varExpansions(config *build)
 	{
 		if (_strcmp(build->args[i], "$$") == 0)
 		{
-			ppidCopy = strdup(build->args[i]);
+			ppidCopy = _strdup(build->args[i]);
 			ppidCopy = _realloc(ppidCopy, _strlen(ppidCopy), pLen + 1);
 			_strcpy(ppidCopy, ppidStr);
 			free(build->args[i]);
 			build->args[i] = ppidCopy;
 		} else if (_strcmp(build->args[i], "$?") == 0)
 		{
-			errCopy = strdup(build->args[i]);
+			errCopy = _strdup(build->args[i]);
 			errCopy = _realloc(errCopy, _strlen(errCopy), eLen + 1);
 			_strcpy(errCopy, errStr);
 			free(build->args[i]);

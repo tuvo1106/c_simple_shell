@@ -3,7 +3,7 @@
 /**
  * helpAlias - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpAlias(config *build)
 {
@@ -17,7 +17,7 @@ int helpAlias(config *build)
 /**
  * helpCd - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpCd(config *build)
 {
@@ -39,7 +39,7 @@ int helpCd(config *build)
 /**
  * helpSetenv - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpSetenv(config *build)
 {
@@ -61,7 +61,7 @@ int helpSetenv(config *build)
 /**
  * helpUnsetenv - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpUnsetenv(config *build)
 {
@@ -79,7 +79,7 @@ int helpUnsetenv(config *build)
 /**
  * helpHelp - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpHelp(config *build)
 {

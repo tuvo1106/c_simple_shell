@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -64,17 +63,17 @@ typedef struct configurations
 typedef struct builtInCommands
 {
 	char *command;
-	int (*func)(config *);
+	int (*func)(config *build);
 } type_b;
 
 /* main */
 config *configInit(config *build);
 
 /* built_ins */
-_Bool findBuiltIns(config *);
-int exitFunc(config *);
-int historyFunc(config *);
-int aliasFunc(config *);
+_Bool findBuiltIns(config *build);
+int exitFunc(config *build);
+int historyFunc(config *build);
+int aliasFunc(config *build);
 
 /* cd */
 int cdFunc(config *);
@@ -88,33 +87,33 @@ int updateOld(config *build);
 _Bool updateCur(config *build, int index);
 
 /* env */
-int envFunc(config *);
-int setenvFunc(config *);
-int unsetenvFunc(config *);
+int envFunc(config *build);
+int setenvFunc(config *build);
+int unsetenvFunc(config *build);
 int _isalpha(int c);
 
 /* help */
-int helpFunc(config *);
+int helpFunc(config *build);
 int displayHelpMenu(void);
-int helpExit(config *);
-int helpEnv(config *);
-int helpHistory(config *);
+int helpExit(config *build);
+int helpEnv(config *build);
+int helpHistory(config *build);
 
 /* help2 */
-int helpAlias(config *);
-int helpCd(config *);
-int helpSetenv(config *);
-int helpUnsetenv(config *);
-int helpHelp(config *);
+int helpAlias(config *build);
+int helpCd(config *biuld);
+int helpSetenv(config *build);
+int helpUnsetenv(config *build);
+int helpHelp(config *build);
 
 /* built_in_helpers*/
 int countArgs(char **args);
 int _atoi(char *s);
 
 /* shell */
-void shell(config *);
-void checkAndGetLine(config *);
-void forkAndExecute(config *);
+void shell(config *build);
+void checkAndGetLine(config *build);
+void forkAndExecute(config *build);
 void stripComments(char *str);
 
 /* _getenv */
@@ -136,7 +135,7 @@ void sigintHandler(int sigint);
 void checkPath(config *);
 
 /* split_string */
-_Bool splitString(config *);
+_Bool splitString(config *build);
 unsigned int countWords(char *s);
 _Bool isSpace(char c);
 

@@ -3,7 +3,7 @@
 /**
  * helpFunc - retrieves instruction on how to use builtin
  * @build: input build
- * Return: 1 if success, 0 on failure
+ * Return: Always 1
  */
 int helpFunc(config *build)
 {
@@ -48,7 +48,7 @@ int helpFunc(config *build)
 
 /**
  * displayHelpMenu - displays available help options
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int displayHelpMenu(void)
 {
@@ -64,7 +64,7 @@ int displayHelpMenu(void)
 /**
  * helpExit - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpExit(config *build)
 {
@@ -80,7 +80,7 @@ int helpExit(config *build)
 /**
  * helpEnv - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpEnv(config *build)
 {
@@ -94,7 +94,7 @@ int helpEnv(config *build)
 /**
  * helpHistory - instructions on how to exit
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int helpHistory(config *build)
 {
