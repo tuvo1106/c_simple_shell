@@ -14,9 +14,9 @@ In interactive mode, simply run the program and wait for the prompt to appear. F
 
 #### Non-Interactive Mode
 In non-interactive mode, echo your desired command and pipe it into the program like this:
-```BASH
+```sh
 echo "ls" | ./shell
-```BASH
+```
 In non-interactive mode, the program will exit after finishing your desired command(s).
 
 #### Included Built-Ins
@@ -44,23 +44,46 @@ Our shell can run outside programs by typing their absolute paths (/bin/ls) or t
 
 ### Included Files and Functions
 *main.c - functions for calling the shell and initializing the shell struct
-
+  *main
+  *configInit
 *shell.c - functions for running the basic shell logic
-
+  *shell
+  *checkAndGetLine
+  *stripComments
+  *forkAndExecute
 *shell_helpers.c - functions for helping the shell run
-
+  *insertNullByte
+  *displayPrompt
+  *displayNewLine
+  *sigintHandler
 *split_string.c - functions for splitting string from the user
-
+  *splitString
+  *countWords
+  *isSpace
 *string_helpers1.c - functions for manipulating strings
-
+  *_strlen
+  *_strcat
+  *_strcmp
+  *_strdup
+  *_strcpy
 *string_helpers2.c - functions for manipulating strings
-
+  *_strtok
+  *_strcspn
+  *_strchr
 *built_ins.c - functions for built-ins
-
+  *findBuiltIns
+  *exitFunc
+  *historyFunc
+  *aliasFunc
 *built_in_helpers.c - functions for helping the built-in functions
-
+  *countArgs
+  *_atoi
 *help.c - functions for the help built-in
-
+  *helpFunc
+  *displayHelpMenu
+  *helpExit
+  *helpEnv
+  helpHistory
 *help2.c - functions for the help built-in
 
 *cd.c - functions for the cd built-in
