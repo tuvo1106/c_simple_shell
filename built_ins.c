@@ -7,7 +7,7 @@
  */
 _Bool findBuiltIns(config *build)
 {
-	register int index = 0;
+	register int i = 0;
 	type_b getBuiltIns[] = {
 		{"exit", exitFunc},
 		{"env", envFunc},
@@ -20,15 +20,15 @@ _Bool findBuiltIns(config *build)
 		{NULL, NULL}
 	};
 
-	while (getBuiltIns[index].command)
+	while (getBuiltIns[i].command)
 	{
-		if (_strcmp(build->args[0], getBuiltIns[index].command) == 0)
+		if (_strcmp(build->args[0], getBuiltIns[i].command) == 0)
 		{
-			getBuiltIns[index].func(build);
+			getBuiltIns[i].func(build);
 			freeArgsAndBuffer(build);
 			return (true);
 		}
-		index++;
+		i++;
 	}
 	return (false);
 }

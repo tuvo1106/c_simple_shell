@@ -29,16 +29,16 @@ int cdFunc(config *build)
  */
 _Bool cdToHome(config *build)
 {
-	register int index;
+	register int i;
 	char *str, *ptr;
 
-	index = searchNode(build->env, "HOME");
-	if (index == -1)
+	i = searchNode(build->env, "HOME");
+	if (i == -1)
 	{
 		perror("No $HOME directory");
 		return (false);
 	}
-	str = getNodeAtIndex(build->env, index);
+	str = getNodeAtIndex(build->env, i);
 	ptr = _strchr(str, '=');
 	ptr++;
 	chdir(ptr);
@@ -54,16 +54,16 @@ _Bool cdToHome(config *build)
  */
 _Bool cdToPrevious(config *build)
 {
-	register int index;
+	register int i;
 	char *str, *ptr;
 
-	index = searchNode(build->env, "OLDPWD");
-	if (index == -1)
+	i = searchNode(build->env, "OLDPWD");
+	if (i == -1)
 	{
 		perror("No $OLDPWD directory");
 		return (false);
 	}
-	str = getNodeAtIndex(build->env, index);
+	str = getNodeAtIndex(build->env, i);
 	ptr = _strchr(str, '=');
 	ptr++;
 	chdir(ptr);
@@ -97,11 +97,11 @@ _Bool cdToCustom(config *build)
  */
 _Bool updateEnviron(config *build)
 {
-	register int index;
+	register int i;
 
-	index = updateOld(build);
-	if (index > -1)
-		return (updateCur(build, index));
+	i = updateOld(build);
+	if (i > -1)
+		return (updateCur(build, i));
 	return (false);
 }
 

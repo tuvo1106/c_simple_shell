@@ -1,7 +1,7 @@
 #include "holberton.h"
 
 /**
- * errorHandler - prints error message for shell()
+ * errorHandler - prints error message for shell
  * @num: nth command entered into shell
  * @cmd: command that could not be executed
  * @arg: arguments
@@ -10,8 +10,7 @@ void errorHandler(int num, char *cmd, char *arg)
 {
 	register int len;
 	static char error[BUFSIZE];
-	char *alpha;
-	char *ptr;
+	char *ptr, *alpha;
 
 	alpha = itoa(num);
 	_strcat(error, SHELLNAME);
@@ -64,7 +63,7 @@ char *getErrorMessage(void)
 			str = ": type help for a list of built-ins";
 			break;
 		default:
-			str = "no error number assigned";
+			str = ": no error number assigned";
 	}
 	return (str);
 }
@@ -99,7 +98,10 @@ char *itoa(unsigned int num)
 	digits += countDigits(num);
 	str = malloc(sizeof(char) * (digits + 1));
 	if (!str)
+	{
+		perror("Malloc: failed\n");
 		exit(errno);
+	}
 	insertNullByte(str, digits);
 	while (num > 0)
 	{

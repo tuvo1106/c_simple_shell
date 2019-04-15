@@ -1,9 +1,9 @@
 #include "holberton.h"
 
 /**
- * envFunc - prints all the environment variables
+ * envFunc - prints the environment
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int envFunc(config *build)
 {
@@ -15,7 +15,7 @@ int envFunc(config *build)
  * setenvFunc - adds env variable if it does not exist;
  * modify env variable if it does
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int setenvFunc(config *build)
 {
@@ -50,7 +50,7 @@ int setenvFunc(config *build)
  * unsetenvFunc - deletes env variable if exists;
  * will only accept valid variables names
  * @build: input build
- * Return: 1 on success, 0 on failure
+ * Return: Always 1
  */
 int unsetenvFunc(config *build)
 {
