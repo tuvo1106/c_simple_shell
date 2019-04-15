@@ -9,8 +9,8 @@
  */
 int updateOld(config *build)
 {
-	static char old[BUFSIZE];
 	register int pwdIndex = 0, index = 0;
+	static char old[BUFSIZE];
 	char *current = NULL;
 
 	_strcat(old, "OLD");
