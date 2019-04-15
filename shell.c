@@ -28,6 +28,7 @@ void checkAndGetLine(config *build)
 {
 	register int len;
 	size_t bufferSize = 0;
+	char *ptr, *ptr2;
 
 	build->args = NULL;
 	build->lineCounter++;
@@ -42,7 +43,11 @@ void checkAndGetLine(config *build)
 			displayNewLine();
 		exit(0);
 	}
-	insertNullByte(build->buffer, len - 1);
+	ptr = _strchr(build->buffer, '\n');
+	ptr2 = _strchr(build->buffer, '\t');
+
+	if (ptr || ptr2)
+		insertNullByte(build->buffer, len - 1);
 	stripComments(build->buffer);
 }
 
