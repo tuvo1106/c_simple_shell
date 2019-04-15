@@ -72,12 +72,16 @@ linked_l *addNodeAtIndex(linked_l **head, int index, char *str)
 		return (NULL);
 	newNode  = malloc(sizeof(linked_l));
 	if (!newNode)
-		return (NULL);
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
 	newStr = _strdup(str);
 	if (!newStr)
 	{
 		free(newNode);
-		return (NULL);
+		perror("Malloc failed\n");
+		exit(errno);
 	}
 
 	newNode->string = newStr;

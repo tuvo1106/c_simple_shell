@@ -15,12 +15,15 @@ linked_l *addNode(linked_l **head, char *str)
 		return (NULL);
 	newNode = malloc(sizeof(linked_l));
 	if (!newNode)
-		return (NULL);
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
 	newStr = _strdup(str);
 	if (!newStr)
 	{
-		free(newNode);
-		return (NULL);
+		perror("Malloc failed\n");
+		exit(errno);
 	}
 	newNode->string = newStr;
 	newNode->next = *head;
@@ -44,12 +47,16 @@ linked_l *addNodeEnd(linked_l **head, char *str)
 		return (NULL);
 	newNode = malloc(sizeof(linked_l));
 	if (!newNode)
-		return (NULL);
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
 	newStr = _strdup(str);
 	if (!newStr)
 	{
 		free(newNode);
-		return (NULL);
+		perror("Malloc failed\n");
+		exit(errno);
 	}
 	newNode->string = newStr;
 	newNode->next = NULL;
@@ -65,7 +72,7 @@ linked_l *addNodeEnd(linked_l **head, char *str)
 }
 
 /**
- * printList - prints alinked_l the elements of a linked_l list
+ * printList - prints all elements of a linked_l list
  * @h: pointer to head of list
  * Return: number of elements
  */
@@ -89,7 +96,7 @@ size_t printList(const linked_l *h)
  * index of a linked_l linked list
  * @head: double pointer to head of list
  * @index: index of node to be deleted
- * Return: 1 if success, 1 if fail
+ * Return: 1 if success, -1 if fail
  */
 int deleteNodeAtIndex(linked_l **head, unsigned int index)
 {
