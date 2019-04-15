@@ -7,25 +7,23 @@
 */
 int countArgs(char **args)
 {
-	register int index = 0;
+	register int i = 0;
 
-	while (args[index])
-		index++;
-	return (index);
+	while (args[i])
+		i++;
+	return (i);
 }
 
 /**
 * _atoi - change string to an integer
 * @s: input string
-* Return: type integer
+* Return: -1 if it's not a valid number, else the converted number
 */
 int _atoi(char *s)
 {
-	register int i;
-	unsigned int num;
+	register int i = 0;
+	unsigned int num = 0;
 
-	i = 0;
-	num = 0;
 	while (s[i])
 	{
 		if (s[i] >= '0' && s[i] <= '9')
@@ -34,7 +32,7 @@ int _atoi(char *s)
 			return (-1);
 		i++;
 	}
-	if (num > 2147483647)
+	if (num > INT_MAX)
 		return (-1);
 	return (num);
 }

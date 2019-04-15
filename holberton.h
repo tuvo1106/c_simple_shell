@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <signal.h>
+#include <limits.h>
 
 #define BUFSIZE 256
 #define SHELLNAME "hsh"
