@@ -17,6 +17,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	{
 		free(ptr);
 		res = malloc(new_size);
+		if (!res)
+		{
+			perror("Malloc failed");
+			exit(errno);
+		}
 		return (res);
 	}
 	if (!new_size && ptr)
@@ -25,6 +30,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 		return (NULL);
 	}
 	res = malloc(new_size);
+	if (!res)
+	{
+		perror("Malloc failed");
+		exit(errno);
+	}
 	_memcpy(res, ptr, old_size);
 	free(ptr);
 	return (res);

@@ -10,6 +10,11 @@ int main(void)
 
 	signal(SIGINT, sigintHandler);
 	build = malloc(sizeof(config));
+	if (!build)
+	{
+		perror("Malloc failed\n");
+		exit(errno);
+	}
 	configInit(build);
 	shell(build);
 	return (EXIT_SUCCESS);

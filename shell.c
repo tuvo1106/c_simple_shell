@@ -41,11 +41,10 @@ void checkAndGetLine(config *build)
 		free(build);
 		if (isatty(STDIN_FILENO))
 			displayNewLine();
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 	ptr = _strchr(build->buffer, '\n');
 	ptr2 = _strchr(build->buffer, '\t');
-
 	if (ptr || ptr2)
 		insertNullByte(build->buffer, len - 1);
 	stripComments(build->buffer);

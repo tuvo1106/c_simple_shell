@@ -19,13 +19,8 @@ _Bool splitString(config *build)
 	}
 	build->args = malloc((countWords(build->buffer) + 1) * sizeof(char *));
 	cpy = _strdup(build->buffer);
-	if (!cpy)
-	{
-		perror("Malloc failed\n");
-		exit(errno);
-	}
 	tok = _strtok(cpy, " ");
-	while (tok != NULL)
+	while (tok)
 	{
 		build->args[i] = _strdup(tok);
 		tok = _strtok(NULL, " ");

@@ -28,7 +28,7 @@ void displayNewLine(void)
 
 /**
  * sigintHandler - catches SIGINT signal and reset signal
- * @sigint: signal from stdout
+ * @sigint: signal from stdint
  */
 void sigintHandler(int sigint)
 {
