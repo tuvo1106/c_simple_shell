@@ -52,11 +52,11 @@ int helpFunc(config *build)
  */
 int displayHelpMenu(void)
 {
-	char str[] = "Type help [built-in]\n\nIncluded built-ins:";
-	char str2[] = "\n\n\texit\n\tenv\n\tcd\n\tsetenv\n\tunsetenv\n\thelp\n";
+	char str[81] = "Type help [built-in]\n\nIncluded built-ins:";
+	char *str2 = "\n\n\texit\n\tenv\n\tcd\n\tsetenv\n\tunsetenv\n\thelp\n";
 
+	_strcat(str, str2);
 	write(STDOUT_FILENO, str, _strlen(str));
-	write(STDOUT_FILENO, str2, _strlen(str2));
 	return (1);
 }
 
@@ -69,11 +69,11 @@ int displayHelpMenu(void)
 int helpExit(config *build)
 {
 	(void)build;
-	char str[] = "exit: exit [n]\n\tExit the shell.\n\n\t";
-	char str2[] = "Exit with a status of n, or if n is omitted, 0.\n";
+	char str[82] = "exit: exit [n]\n\tExit the shell.\n\n\t";
+	char *str2 = "Exit with a status of n, or if n is omitted, 0.\n";
 
+	_strcat(str, str2);
 	write(STDOUT_FILENO, str, _strlen(str));
-	write(STDOUT_FILENO, str2, _strlen(str2));
 	return (1);
 }
 
@@ -84,9 +84,9 @@ int helpExit(config *build)
  */
 int helpEnv(config *build)
 {
-	(void)build;
 	char str[] = "env: env\n\tPrint the environment.\n";
 
+	(void)build;
 	write(STDOUT_FILENO, str, _strlen(str));
 	return (1);
 }
@@ -98,9 +98,9 @@ int helpEnv(config *build)
  */
 int helpHistory(config *build)
 {
-	(void)build;
 	char str[] = "history: history\n\tNot supported in this version.\n";
 
+	(void)build;
 	write(STDOUT_FILENO, str, _strlen(str));
 	return (1);
 }
