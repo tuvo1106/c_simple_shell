@@ -42,6 +42,25 @@ history | View the history of the shell.
 #### Outside Programs
 Our shell can run outside programs by typing their absolute paths (/bin/ls) or the executable name (ls), IF their directory is included in the PATH.
 
+### Examples
+
+```sh
+$ ls -l
+total 8
+drwxrwxr-x 1 vagrant vagrant Apr 2 13:23 directory_1
+drwxrwxr-x 2 vagrant vagrant Apr 2 20:30 directory_2
+```
+$ /bin/pwd
+/home/vagrant/shell
+```sh
+$ hello world
+./hsh: 1: hello: not found
+```
+```sh
+$ help env
+env: env
+	Print the environment.
+```
 ### Included Files
  
  - main.c - functions for calling the shell and initializing the shell struct
