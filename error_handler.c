@@ -28,7 +28,7 @@ void errorHandler(int num, char *cmd, char *arg)
 	_strcat(error, "\n");
 	ptr = _strchr(error, '\n');
 	len = ptr - error;
-	insertNullByte(error, len + 1);
+	/*insertNullByte(error, len + 1);*/
 	write(STDERR_FILENO, error, len + 1);
 	free(alpha);
 	insertNullByte(error, 0);

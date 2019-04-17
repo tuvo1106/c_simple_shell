@@ -86,7 +86,8 @@ void forkAndExecute(config *build)
 			freeMembers(build);
 			free(build);
 			exit(EXIT_SUCCESS);
-		}
+		} else
+			errno = 0;
 	} else
 	{
 		wait(NULL);
