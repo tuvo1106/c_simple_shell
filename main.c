@@ -6,20 +6,14 @@
  */
 int main(int ac, char **av)
 {
-	config *build;
+	config build;
 
 	(void)ac;
 	signal(SIGINT, sigintHandler);
-	build = malloc(sizeof(config));
-	if (!build)
-	{
-		perror("Malloc failed\n");
-		exit(errno);
-	}
-	configInit(build);
-	build->shellname = av[0];
-	shell(build);
-	return (EXIT_SUCCESS);
+	configInit(&build);
+	build.shellname = av[0];
+	shell(&build);
+	return (0);
 }
 
 /**
