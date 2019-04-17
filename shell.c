@@ -40,7 +40,10 @@ void checkAndGetLine(config *build)
 		freeMembers(build);
 		if (isatty(STDIN_FILENO))
 			displayNewLine();
+		if (build->errorStatus)
+			exit(build->errorStatus);
 		exit(0);
+
 	}
 	ptr = _strchr(build->buffer, '\n');
 	ptr2 = _strchr(build->buffer, '\t');
