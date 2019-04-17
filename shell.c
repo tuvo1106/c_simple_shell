@@ -31,6 +31,7 @@ void checkAndGetLine(config *build)
 	char *ptr, *ptr2;
 
 	build->args = NULL;
+	build->envList = NULL;
 	build->lineCounter++;
 	if (isatty(STDIN_FILENO))
 		displayPrompt();
@@ -78,19 +79,41 @@ void forkAndExecute(config *build)
 {
 	pid_t f1 = fork();
 	int status;
+	convertLLtoArr(build);
 
 	if (f1 == 0)
 	{
-		if (execve(build->fullPath, build->args, environ) == -1)
+		if (execve(build->fullPath, build->args, build->envList) == -1)
 		{
 			errorHandler(build->lineCounter, build->buffer, NULL);
 			freeMembers(build);
 			free(build);
+			freeArgs(build->envList);
 			exit(127);
 		}
 	} else
 	{
 		wait(&status);
 		freeArgsAndBuffer(build);
+		freeArgs(build->envList);
 	}
+}
+
+void convertLLtoArr(config *build)
+{
+	register int i = 0;
+	size_t count = 0;
+	char **envList = NULL;
+	linked_l *tmp = build->env;
+
+	count = list_len(build->env);
+	envList = malloc(sizeof(char *) * (count + 1));
+	while (tmp)
+	{
+		envList[i] = _strdup(tmp->string);
+		tmp = tmp->next;
+		i++;
+	}
+	envList[i] = NULL;
+	build->envList = envList;
 }

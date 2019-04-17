@@ -125,3 +125,19 @@ int deleteNodeAtIndex(linked_l **head, unsigned int index)
 	return (1);
 }
 
+/**
+ * list_len - returns the number of elements in a linked list
+ * @h: head of linked list
+ * Return: number of elements in list_t
+ */
+size_t list_len(linked_l *h)
+{
+	register unsigned int count = 0;
+
+	while (h)
+	{
+		h = h->next;
+		count++;
+	}
+	return (count);
+}

@@ -28,6 +28,7 @@ int main(void)
 config *configInit(config *build)
 {
 	build->env = generateLinkedList(environ);
+	build->envList = NULL;
 	build->args = NULL;
 	build->buffer = NULL;
 	build->path = _getenv("PATH", environ);

@@ -48,6 +48,7 @@ typedef struct linkedList
 typedef struct configurations
 {
 	linked_l *env;
+	char **envList;
 	char **args;
 	char *buffer;
 	char *path;
@@ -115,6 +116,7 @@ void shell(config *build);
 void checkAndGetLine(config *build);
 void forkAndExecute(config *build);
 void stripComments(char *str);
+void convertLLtoArr(config *build);
 
 /* _getenv */
 char *_getenv(char *input, char **environ);
@@ -157,6 +159,7 @@ linked_l *addNode(linked_l **head, char *str);
 linked_l *addNodeEnd(linked_l **head, char *str);
 size_t printList(const linked_l *h);
 int searchNode(linked_l *head, char *str);
+size_t list_len(linked_l *h);
 
 /* llfuncs2 */
 int deleteNodeAtIndex(linked_l **head, unsigned int index);
