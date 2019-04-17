@@ -15,7 +15,7 @@ void insertNullByte(char *str, unsigned int index)
  */
 void displayPrompt(void)
 {
-	write(STDOUT_FILENO, "$ ", 2);
+	write(STDERR_FILENO, "$ ", 2);
 }
 
 /**
