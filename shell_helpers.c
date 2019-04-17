@@ -23,7 +23,7 @@ void displayPrompt(void)
  */
 void displayNewLine(void)
 {
-	write(STDOUT_FILENO, "\n", 1);
+	write(STDERR_FILENO, "\n", 1);
 }
 
 /**
