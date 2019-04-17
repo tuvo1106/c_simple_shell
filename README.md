@@ -1,7 +1,7 @@
 # Josef and Tu's Shell
 - - - 
 ### Description
-Josef and Tu's Shell is a shell that replicates functionalities of the simple shell. Additional functions are also included.
+Josef and Tu's Shell is a simple UNIX command interpreter that replicates functionalities of the simple shell (sh). Additional functions are also included. This program was written entirely in C as a milestone project for Holberton School.
 
 ### Installation
 Clone this repository into your working directory. For best results, files should be compiled with GCC and the following flags: -Wall -Wextra -Werror -pedantic -Wno-format.
@@ -35,7 +35,7 @@ The following built-in commands may be supported in future versions:
 
 Command | Definition
 --------|---------------
-Alias   | Set an Alias.
+alias   | Set an Alias.
 history | View the history of the shell.
 
 
