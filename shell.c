@@ -81,7 +81,14 @@ void forkAndExecute(config *build)
 	pid_t f1 = fork();
 
 	convertLLtoArr(build);
-
+	if (f1 == -1)
+	{
+		perror("error\n");
+		freeMembers(build);
+		freeArgs(build->envList);
+		free(build);
+		exit(1);
+	}
 	if (f1 == 0)
 	{
 		if (execve(build->fullPath, build->args, build->envList) == -1)

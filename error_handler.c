@@ -2,9 +2,7 @@
 
 /**
  * errorHandler - prints error message for shell
- * @num: nth command entered into shell
- * @cmd: command that could not be executed
- * @arg: arguments
+ * @build: the build config
  */
 void errorHandler(config *build)
 {

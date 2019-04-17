@@ -14,7 +14,6 @@
 #include <limits.h>
 
 #define BUFSIZE 256
-//#define SHELLNAME "hsh"
 
 /* ERRORS */
 #define ENOSTRING 1106
