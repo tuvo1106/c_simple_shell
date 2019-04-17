@@ -1,7 +1,7 @@
 # Josef and Tu's Shell
 - - - 
 ### Description
-Josef and Tu's Shell is a shell that replicates functionalities of the simple shell. Additional functions are also included.
+Josef and Tu's Shell is a simple UNIX command interpreter that replicates functionalities of the simple shell (sh). Additional functions are also included. This program was written entirely in C as a milestone project for Holberton School.
 
 ### Installation
 Clone this repository into your working directory. For best results, files should be compiled with GCC and the following flags: -Wall -Wextra -Werror -pedantic -Wno-format.
@@ -35,13 +35,34 @@ The following built-in commands may be supported in future versions:
 
 Command | Definition
 --------|---------------
-Alias   | Set an Alias.
+alias   | Set an Alias.
 history | View the history of the shell.
 
 
 #### Outside Programs
 Our shell can run outside programs by typing their absolute paths (/bin/ls) or the executable name (ls), IF their directory is included in the PATH.
 
+### Examples
+
+```sh
+$ ls -l
+total 8
+drwxrwxr-x 1 vagrant vagrant Apr 2 13:23 directory_1
+drwxrwxr-x 2 vagrant vagrant Apr 2 20:30 directory_2
+```
+```sh
+$ /bin/pwd
+/home/vagrant/shell
+```
+```sh
+$ hello world
+./hsh: 1: hello: not found
+```
+```sh
+$ help env
+env: env
+	Print the environment.
+```
 ### Included Files
  
  - main.c - functions for calling the shell and initializing the shell struct
