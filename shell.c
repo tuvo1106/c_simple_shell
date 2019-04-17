@@ -35,7 +35,7 @@ void checkAndGetLine(config *build)
 	if (isatty(STDIN_FILENO))
 		displayPrompt();
 	len = getline(&build->buffer, &bufferSize, stdin);
-	if (len < 0)
+	if (len == EOF)
 	{
 		freeMembers(build);
 		free(build);
@@ -77,6 +77,7 @@ void stripComments(char *str)
 void forkAndExecute(config *build)
 {
 	pid_t f1 = fork();
+	int status;
 
 	if (f1 == 0)
 	{
@@ -85,12 +86,11 @@ void forkAndExecute(config *build)
 			errorHandler(build->lineCounter, build->buffer, NULL);
 			freeMembers(build);
 			free(build);
-			exit(EXIT_SUCCESS);
-		} else
-			errno = 0;
+			exit(127);
+		}
 	} else
 	{
-		wait(NULL);
+		wait(&status);
 		freeArgsAndBuffer(build);
 	}
 }
