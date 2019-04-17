@@ -17,14 +17,14 @@ void errorHandler(config *build)
 	_strcat(error, ": ");
 	_strcat(error, build->args[0]);
 	_strcat(error, getErrorMessage());
-/*
-*   if (build->args[1])
-*	{
-*		if (errno != EBADCD)
-*			_strcat(error, ": ");
-*		_strcat(error, build->args[1]);
-*	}
-*/
+
+   if (build->args[1])
+	{
+		if (errno != EBADCD)
+			_strcat(error, ": ");
+		_strcat(error, build->args[1]);
+	}
+
 	_strcat(error, "\n");
 	ptr = _strchr(error, '\n');
 	len = ptr - error;

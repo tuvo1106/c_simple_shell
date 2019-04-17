@@ -56,6 +56,7 @@ int exitFunc(config *build)
 		if (exitStatus == -1)
 		{
 			errno = EILLEGAL;
+			build->errorStatus = 2;
 			errorHandler(build);
 			return (0);
 		}
