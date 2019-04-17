@@ -45,7 +45,7 @@ char *getErrorMessage(void)
 	switch (errno)
 	{
 		case EBADCD:
-			str = ": cant cd to";
+			str = ": can't cd to ";
 			break;
 		case ENOENT:
 			str = ": not found";
@@ -54,7 +54,7 @@ char *getErrorMessage(void)
 			str = ": bad variable name";
 			break;
 		case EILLEGAL:
-			str = ": illegal number";
+			str = ": Illegal number";
 			break;
 		case EWSIZE:
 			str = ": invalid number of arguments";

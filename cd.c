@@ -67,6 +67,8 @@ _Bool cdToPrevious(config *build)
 	ptr = _strchr(str, '=');
 	ptr++;
 	chdir(ptr);
+	write(STDOUT_FILENO, ptr, _strlen(ptr));
+	displayNewLine();
 	free(str);
 	return (true);
 }
