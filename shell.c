@@ -77,15 +77,16 @@ void stripComments(char *str)
  */
 void forkAndExecute(config *build)
 {
-	pid_t f1 = fork();
 	int status;
+	pid_t f1 = fork();
+
 	convertLLtoArr(build);
 
 	if (f1 == 0)
 	{
 		if (execve(build->fullPath, build->args, build->envList) == -1)
 		{
-			errorHandler(build->lineCounter, build->buffer, NULL);
+			errorHandler(build);
 			freeMembers(build);
 			free(build);
 			freeArgs(build->envList);

@@ -55,7 +55,7 @@ int exitFunc(config *build)
 		if (exitStatus == -1)
 		{
 			errno = EILLEGAL;
-			errorHandler(build->lineCounter, build->args[0], build->args[1]);
+			errorHandler(build);
 			return (0);
 		}
 		freeMembers(build);

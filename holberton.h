@@ -14,7 +14,7 @@
 #include <limits.h>
 
 #define BUFSIZE 256
-#define SHELLNAME "hsh"
+//#define SHELLNAME "hsh"
 
 /* ERRORS */
 #define ENOSTRING 1106
@@ -54,6 +54,7 @@ typedef struct configurations
 	char *path;
 	char *fullPath;
 	unsigned int lineCounter;
+	char *shellname;
 } config;
 
 /**
@@ -122,7 +123,7 @@ void convertLLtoArr(config *build);
 char *_getenv(char *input, char **environ);
 
 /* error_handler */
-void errorHandler(int n, char *cmd, char *arg);
+void errorHandler(config *build);
 unsigned int countDigits(int num);
 char *itoa(unsigned int num);
 char *getErrorMessage();

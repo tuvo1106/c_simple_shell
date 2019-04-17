@@ -6,25 +6,27 @@
  * @cmd: command that could not be executed
  * @arg: arguments
  */
-void errorHandler(int num, char *cmd, char *arg)
+void errorHandler(config *build)
 {
 	register int len;
 	static char error[BUFSIZE];
 	char *ptr, *alpha;
 
-	alpha = itoa(num);
-	_strcat(error, SHELLNAME);
+	alpha = itoa(build->lineCounter);
+	_strcat(error, build->shellname);
 	_strcat(error, ": ");
 	_strcat(error, alpha);
 	_strcat(error, ": ");
-	_strcat(error, cmd);
+	_strcat(error, build->args[0]);
 	_strcat(error, getErrorMessage());
-	if (arg)
-	{
-		if (errno != EBADCD)
-			_strcat(error, ": ");
-		_strcat(error, arg);
-	}
+/*
+*   if (build->args[1])
+*	{
+*		if (errno != EBADCD)
+*			_strcat(error, ": ");
+*		_strcat(error, build->args[1]);
+*	}
+*/
 	_strcat(error, "\n");
 	ptr = _strchr(error, '\n');
 	len = ptr - error;

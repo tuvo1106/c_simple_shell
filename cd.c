@@ -86,7 +86,7 @@ _Bool cdToCustom(config *build)
 	if (changeStatus == -1)
 	{
 		errno = EBADCD;
-		errorHandler(build->lineCounter, build->args[0], build->args[1]);
+		errorHandler(build);
 		return (false);
 	}
 	return (true);

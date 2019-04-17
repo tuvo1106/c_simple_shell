@@ -4,7 +4,7 @@
  * main - entry point for application
  * Return: 0 on success
  */
-int main(void)
+int main(int ac, char **av)
 {
 	config *build;
 
@@ -16,6 +16,7 @@ int main(void)
 		exit(errno);
 	}
 	configInit(build);
+	build->shellname = av[0];
 	shell(build);
 	return (EXIT_SUCCESS);
 }
@@ -34,5 +35,6 @@ config *configInit(config *build)
 	build->path = _getenv("PATH", environ);
 	build->fullPath = NULL;
 	build->lineCounter = 0;
+	build->shellname = NULL;
 	return (build);
 }

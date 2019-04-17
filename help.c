@@ -41,7 +41,7 @@ int helpFunc(config *build)
 	if (foundCommand == false)
 	{
 		errno = ENOBUILTIN;
-		errorHandler(build->lineCounter, build->args[1], NULL);
+		errorHandler(build);
 	}
 	return (1);
 }

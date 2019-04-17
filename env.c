@@ -25,7 +25,7 @@ int setenvFunc(config *build)
 	if (countArgs(build->args) != 3)
 	{
 		errno = EWSIZE;
-		errorHandler(build->lineCounter, build->args[0], NULL);
+		errorHandler(build);
 		return (1);
 	}
 	len = _strlen(build->args[1]) + _strlen(build->args[2]) + 2;
@@ -73,7 +73,7 @@ int unsetenvFunc(config *build)
 	if (foundMatch == false)
 	{
 		errno = ENOSTRING;
-		errorHandler(build->lineCounter, build->buffer, NULL);
+		errorHandler(build);
 	}
 	return (1);
 }
