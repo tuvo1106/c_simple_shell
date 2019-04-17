@@ -41,7 +41,7 @@ void checkAndGetLine(config *build)
 		freeMembers(build);
 		if (isatty(STDIN_FILENO))
 			displayNewLine();
-		exit();
+		exit(0);
 	}
 	ptr = _strchr(build->buffer, '\n');
 	ptr2 = _strchr(build->buffer, '\t');
@@ -85,7 +85,7 @@ void forkAndExecute(config *build)
 		perror("error\n");
 		freeMembers(build);
 		freeArgs(build->envList);
-		exit();
+		exit(0);
 	}
 	if (f1 == 0)
 	{
@@ -94,7 +94,7 @@ void forkAndExecute(config *build)
 			errorHandler(build);
 			freeMembers(build);
 			freeArgs(build->envList);
-			exit();
+			exit(0);
 		}
 	} else
 	{
