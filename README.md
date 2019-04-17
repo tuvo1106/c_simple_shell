@@ -7,7 +7,7 @@ Josef and Tu's Shell is a shell that replicates functionalities of the simple sh
 Clone this repository into your working directory. For best results, files should be compiled with GCC and the following flags: -Wall -Wextra -Werror -pedantic -Wno-format.
 
 ### Usage
-After compilation, the resulting program can run stand-alone, either in interactive or non-interactive mode. 
+After compilation, the resulting program can run stand-alone, either in interactive or non-interactive mode.
 
 #### Interactive Mode
 In interactive mode, simply run the program and wait for the prompt to appear. From there, you can type commands freely, exiting with either the "exit" command or ctrl-D.
@@ -40,7 +40,7 @@ history | View the history of the shell.
 
 
 #### Outside Programs
-Our shell can run outside programs by typing their absolute paths (/bin/ls) or the executable name (ls), IF their directory is included in the PATH. 
+Our shell can run outside programs by typing their absolute paths (/bin/ls) or the executable name (ls), IF their directory is included in the PATH.
 
 ### Included Files and Functions
 *main.c - functions for calling the shell and initializing the shell struct

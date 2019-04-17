@@ -77,7 +77,7 @@ The primary prompt string, which defaults to “$ ”
 .SH FILES
 .SH HISTORY
 .SH BUGS
-.ip Expansions only work once per stdin read 
+.ip Expansions only work once per stdin read
 .SH AUTHOR
 Tu Vo and Josef Goodyear
 .SH SEE ALSO
