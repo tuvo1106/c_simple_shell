@@ -7,7 +7,7 @@
 int main(int ac, char **av)
 {
 	config *build;
-
+	(void)ac;
 	signal(SIGINT, sigintHandler);
 	build = malloc(sizeof(config));
 	if (!build)
