@@ -65,11 +65,11 @@ int helpSetenv(config *build)
  */
 int helpUnsetenv(config *build)
 {
-	(void)build;
 	char str[116] = "unsetenv: unsetenv [var]\n\t";
 	char *str2 = "Unset a variable in the environment.\n\n\t";
 	char *str3 = "[var] is an existing variable in the environment.\n";
 
+	(void)build;
 	_strcat(str, str2);
 	_strcat(str, str3);
 	write(STDOUT_FILENO, str, _strlen(str));

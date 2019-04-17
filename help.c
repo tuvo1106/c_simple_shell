@@ -68,10 +68,10 @@ int displayHelpMenu(void)
  */
 int helpExit(config *build)
 {
-	(void)build;
 	char str[82] = "exit: exit [n]\n\tExit the shell.\n\n\t";
 	char *str2 = "Exit with a status of n, or if n is omitted, 0.\n";
 
+	(void)build;
 	_strcat(str, str2);
 	write(STDOUT_FILENO, str, _strlen(str));
 	return (1);
