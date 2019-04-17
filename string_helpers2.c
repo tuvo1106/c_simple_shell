@@ -6,6 +6,7 @@
  * @delim: delimiter
  * Return: pointer to start of string
  */
+/*
 char *_strtok(char *str, char *delim)
 {
 	static char *lastptr;
@@ -24,7 +25,7 @@ char *_strtok(char *str, char *delim)
 		*lastptr++ = 0;
 	return (str);
 }
-
+*/
 /**
  * _strcspn - returns first occurence of any char in
  * second string in first string

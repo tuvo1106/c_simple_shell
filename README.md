@@ -42,72 +42,28 @@ history | View the history of the shell.
 #### Outside Programs
 Our shell can run outside programs by typing their absolute paths (/bin/ls) or the executable name (ls), IF their directory is included in the PATH.
 
-### Included Files and Functions
+### Included Files
 *main.c - functions for calling the shell and initializing the shell struct
-  *main
-  *configInit
 *shell.c - functions for running the basic shell logic
-  *shell
-  *checkAndGetLine
-  *stripComments
-  *forkAndExecute
 *shell_helpers.c - functions for helping the shell run
-  *insertNullByte
-  *displayPrompt
-  *displayNewLine
-  *sigintHandler
 *split_string.c - functions for splitting string from the user
-  *splitString
-  *countWords
-  *isSpace
 *string_helpers1.c - functions for manipulating strings
-  *_strlen
-  *_strcat
-  *_strcmp
-  *_strdup
-  *_strcpy
 *string_helpers2.c - functions for manipulating strings
-  *_strtok
-  *_strcspn
-  *_strchr
 *built_ins.c - functions for built-ins
-  *findBuiltIns
-  *exitFunc
-  *historyFunc
-  *aliasFunc
 *built_in_helpers.c - functions for helping the built-in functions
-  *countArgs
-  *_atoi
 *help.c - functions for the help built-in
-  *helpFunc
-  *displayHelpMenu
-  *helpExit
-  *helpEnv
-  helpHistory
 *help2.c - functions for the help built-in
-
 *cd.c - functions for the cd built-in
-
 *cd2.c - functions for the cd built-in
-
 *_getenv.c - functions for getting elements from the environment
-
 *env.c - functions for the env, setenv, and unsetenv built-ins
-
 *llfuncs1.c - linked list functions
-
 *llfuncs2.c - linked list functions
-
 *expansions.c - functions for dealing with the $? and $$ expansions
-
 *check_path.c - functions for checking the path of an executable
-
 *error_handler.c - functions for dealing with errors
-
 *free.c - functions for freeing allocated memory
-
 *holberton.h - header file
-
 
 ### Credits
 All code written by [Tu Vo](https://github.com/tuvo1106) and [Josef Goodyear](https://github.com/JosefGoodyear).
