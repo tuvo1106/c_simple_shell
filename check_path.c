@@ -15,7 +15,7 @@ void checkPath(config *build)
 	if (checkEdgeCases(build))
 		return;
 	copy = _strdup(build->path);
-	tok = strtok(copy, delim);
+	tok = _strtok(copy, delim);
 	while (tok)
 	{
 		tmp = inLoop ? tok - 2 : tok;
@@ -37,7 +37,7 @@ void checkPath(config *build)
 			return;
 		}
 		insertNullByte(buffer, 0);
-		tok = strtok(NULL, delim);
+		tok = _strtok(NULL, delim);
 		inLoop = true;
 	}
 	build->fullPath = build->args[0];

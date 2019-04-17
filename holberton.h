@@ -12,7 +12,6 @@
 #include <errno.h>
 #include <signal.h>
 #include <limits.h>
-#include <string.h>
 #define BUFSIZE 256
 
 /* ERRORS */

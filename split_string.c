@@ -19,11 +19,11 @@ _Bool splitString(config *build)
 	}
 	build->args = malloc((countWords(build->buffer) + 1) * sizeof(char *));
 	cpy = _strdup(build->buffer);
-	tok = strtok(cpy, " ");
+	tok = _strtok(cpy, " ");
 	while (tok)
 	{
 		build->args[i] = _strdup(tok);
-		tok = strtok(NULL, " ");
+		tok = _strtok(NULL, " ");
 		i++;
 	}
 	build->args[i] = NULL;

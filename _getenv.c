@@ -13,10 +13,10 @@ char *_getenv(char *input, char **environ)
 
 	while (environ[i])
 	{
-		tok = strtok(environ[i], "=");
+		tok = _strtok(environ[i], "=");
 		if (_strcmp(tok, input) == 0)
 		{
-			right = strtok(NULL, "=");
+			right = _strtok(NULL, "=");
 			return (right);
 		}
 		i++;
