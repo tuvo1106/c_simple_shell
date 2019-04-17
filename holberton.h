@@ -133,6 +133,7 @@ void sigintHandler(int sigint);
 
 /* check_path */
 void checkPath(config *);
+_Bool checkEdgeCases(config *build);
 
 /* split_string */
 _Bool splitString(config *build);
