@@ -51,8 +51,9 @@ typedef struct configurations
 	char *buffer;
 	char *path;
 	char *fullPath;
-	unsigned int lineCounter;
 	char *shellname;
+	unsigned int lineCounter;
+	int errorStatus;
 } config;
 
 /**

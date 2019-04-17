@@ -13,9 +13,6 @@ void shell(config *build)
 			continue;
 		if (findBuiltIns(build) == true)
 			continue;
-/*
-*  	 	checkExpansions(build);
-*/
 		checkPath(build);
 		forkAndExecute(build);
 	}
@@ -96,11 +93,20 @@ void forkAndExecute(config *build)
 			errorHandler(build);
 			freeMembers(build);
 			freeArgs(build->envList);
-			exit(0);
+			if (errno == ENOENT)
+			{
+				exit(127);
+			}
+			if (errno == EACCES)
+			{
+				exit(126);
+			}
 		}
 	} else
 	{
 		wait(&status);
+		if (WIFEXITED(status))
+			build->errorStatus = WEXITSTATUS(status);
 		freeArgsAndBuffer(build);
 		freeArgs(build->envList);
 	}

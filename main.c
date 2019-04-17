@@ -31,5 +31,6 @@ config *configInit(config *build)
 	build->fullPath = NULL;
 	build->lineCounter = 0;
 	build->shellname = NULL;
+	build->errorStatus = 0;
 	return (build);
 }

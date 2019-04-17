@@ -46,7 +46,9 @@ int exitFunc(config *build)
 	if (argCount == 1)
 	{
 		freeMembers(build);
-		exit(0);
+		if (build->errorStatus)
+			exit(build->errorStatus);
+		exit(EXIT_SUCCESS);
 	}
 	else if (argCount > 1)
 	{
