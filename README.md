@@ -50,8 +50,10 @@ total 8
 drwxrwxr-x 1 vagrant vagrant Apr 2 13:23 directory_1
 drwxrwxr-x 2 vagrant vagrant Apr 2 20:30 directory_2
 ```
+```sh
 $ /bin/pwd
 /home/vagrant/shell
+```
 ```sh
 $ hello world
 ./hsh: 1: hello: not found
