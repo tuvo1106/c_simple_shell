@@ -13,7 +13,9 @@ void shell(config *build)
 			continue;
 		if (findBuiltIns(build) == true)
 			continue;
-		checkExpansions(build);
+/*
+*  	 	checkExpansions(build);
+*/
 		checkPath(build);
 		forkAndExecute(build);
 	}
