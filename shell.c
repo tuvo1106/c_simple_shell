@@ -94,13 +94,9 @@ void forkAndExecute(config *build)
 			freeMembers(build);
 			freeArgs(build->envList);
 			if (errno == ENOENT)
-			{
 				exit(127);
-			}
 			if (errno == EACCES)
-			{
 				exit(126);
-			}
 		}
 	} else
 	{
@@ -112,6 +108,10 @@ void forkAndExecute(config *build)
 	}
 }
 
+/**
+ * convertLLtoArr - convert linked list to array
+ * @build: input build
+ */
 void convertLLtoArr(config *build)
 {
 	register int i = 0;
@@ -121,6 +121,11 @@ void convertLLtoArr(config *build)
 
 	count = list_len(build->env);
 	envList = malloc(sizeof(char *) * (count + 1));
+	if (!envList)
+	{
+		perror("Malloc failed\n");
+		exit(1);
+	}
 	while (tmp)
 	{
 		envList[i] = _strdup(tmp->string);

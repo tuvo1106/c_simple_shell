@@ -37,11 +37,14 @@ typedef struct linkedList
 /**
  * struct configurations - configuration of build settings
  * @env: linked list of local env variables
+ * @envList: array of env variables to put into execve
  * @args: array of argument strings
  * @buffer: string buffer of user input
  * @path: array of $PATH locations
  * @fullPath: string of path with correct prepended $PATH
+ * @shellName: name of shell (argv[0])
  * @lineCounter: counter of lines users have entered
+ * @errorStatus: error status of last child process
  */
 typedef struct configurations
 {
@@ -51,7 +54,7 @@ typedef struct configurations
 	char *buffer;
 	char *path;
 	char *fullPath;
-	char *shellname;
+	char *shellName;
 	unsigned int lineCounter;
 	int errorStatus;
 } config;

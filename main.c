@@ -2,6 +2,8 @@
 
 /**
  * main - entry point for application
+ * @ac: argument count
+ * @av: argument vector
  * Return: 0 on success
  */
 int main(int ac, char **av)
@@ -11,7 +13,7 @@ int main(int ac, char **av)
 	(void)ac;
 	signal(SIGINT, sigintHandler);
 	configInit(&build);
-	build.shellname = av[0];
+	build.shellName = av[0];
 	shell(&build);
 	return (0);
 }
@@ -30,7 +32,7 @@ config *configInit(config *build)
 	build->path = _getenv("PATH", environ);
 	build->fullPath = NULL;
 	build->lineCounter = 0;
-	build->shellname = NULL;
+	build->shellName = NULL;
 	build->errorStatus = 0;
 	return (build);
 }
