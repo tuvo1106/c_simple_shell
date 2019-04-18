@@ -98,8 +98,8 @@ void forkAndExecute(config *build)
 			freeArgs(build->envList);
 			if (errno == ENOENT)
 				exit(127);
-			if (errno == EACCES)
-				exit(126);
+			/*if (errno == EACCES)
+				exit(126);*/
 		}
 	} else
 	{
