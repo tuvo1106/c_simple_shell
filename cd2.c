@@ -17,7 +17,6 @@ int updateOld(config *build)
 	pwdIndex = searchNode(build->env, "PWD");
 	if (pwdIndex == -1)
 	{
-		perror("No $PWD directory");
 		return (-1);
 	}
 	current = getNodeAtIndex(build->env, pwdIndex);
@@ -27,7 +26,6 @@ int updateOld(config *build)
 	index = searchNode(build->env, "OLDPWD");
 	if (index == -1)
 	{
-		perror("No $OLDPWD directory");
 		return (-1);
 	}
 	deleteNodeAtIndex(&build->env, index);
