@@ -91,7 +91,7 @@ void forkAndExecute(config *build)
 	}
 	if (f1 == 0)
 	{
-		if (execve(build->fullPath, build->args, environ) == -1)
+		if (execve(build->fullPath, build->args, build->envList) == -1)
 		{
 			errorHandler(build);
 			freeMembers(build);

@@ -17,7 +17,6 @@ void errorHandler(config *build)
 	_strcat(error, ": ");
 	_strcat(error, build->args[0]);
 	_strcat(error, getErrorMessage());
-
 	if (build->args[1])
 	{
 		if (errno != EBADCD)
