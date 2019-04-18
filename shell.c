@@ -60,15 +60,20 @@ void checkAndGetLine(config *build)
 void stripComments(char *str)
 {
 	register int i = 0;
+	_Bool notFirst = false;
 
 	while (str[i])
 	{
-		if (str[i] == '#')
+		if (notFirst)
 		{
-			insertNullByte(str, i);
-			break;
+			if (str[i] == '#' && str[i - 1] == ' ')
+			{
+				insertNullByte(str, i);
+				break;
+			}
 		}
 		i++;
+		notFirst = true;
 	}
 }
 
