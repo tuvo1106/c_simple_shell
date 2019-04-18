@@ -13,7 +13,13 @@ void shell(config *build)
 			continue;
 		if (findBuiltIns(build) == true)
 			continue;
-		checkPath(build);
+		if (checkPath(build) == false)
+		{
+			errorHandler(build);
+			build->errorStatus = 127;
+			freeArgsAndBuffer(build);
+			continue;
+		};
 		forkAndExecute(build);
 	}
 }
