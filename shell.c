@@ -100,7 +100,6 @@ void forkAndExecute(config *build)
 				exit(127);
 			if (errno == EACCES)
 				exit(126);
-			exit(EXIT_SUCCESS);
 		}
 	} else
 	{
