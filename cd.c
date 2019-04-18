@@ -35,8 +35,9 @@ _Bool cdToHome(config *build)
 	i = searchNode(build->env, "HOME");
 	if (i == -1)
 	{
-		perror("No $HOME directory");
-		return (false);
+		str = "/root";
+		chdir(ptr);
+		return (true);
 	}
 	str = getNodeAtIndex(build->env, i);
 	ptr = _strchr(str, '=');
@@ -60,8 +61,15 @@ _Bool cdToPrevious(config *build)
 	i = searchNode(build->env, "OLDPWD");
 	if (i == -1)
 	{
-		perror("No $OLDPWD directory");
-		return (false);
+		i = searchNode(build->env, "PWD");
+		str = getNodeAtIndex(build->env, i);
+		ptr = _strchr(str, '=');
+		ptr++;
+		write(STDOUT_FILENO, ptr, _strlen(ptr));
+		write(STDOUT_FILENO, ptr, _strlen(ptr));
+		displayNewLine();
+		free(str);
+		return (true);
 	}
 	str = getNodeAtIndex(build->env, i);
 	ptr = _strchr(str, '=');
