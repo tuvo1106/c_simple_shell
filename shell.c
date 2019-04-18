@@ -42,7 +42,7 @@ void checkAndGetLine(config *build)
 			displayNewLine();
 		if (build->errorStatus)
 			exit(build->errorStatus);
-		exit(errno);
+		exit(EXIT_SUCESS);
 
 	}
 	ptr = _strchr(build->buffer, '\n');
@@ -100,7 +100,7 @@ void forkAndExecute(config *build)
 				exit(127);
 			if (errno == EACCES)
 				exit(126);
-			exit(errno);
+			exit(EXIT_SUCCESS);
 		}
 	} else
 	{
