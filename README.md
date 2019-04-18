@@ -1,5 +1,5 @@
 # Josef and Tu's Shell
-- - - 
+- - -
 ### Description
 Josef and Tu's Shell is a simple UNIX command interpreter that replicates functionalities of the simple shell (sh). Additional functions are also included. This program was written entirely in C as a milestone project for Holberton School.
 
@@ -64,7 +64,7 @@ env: env
 	Print the environment.
 ```
 ### Included Files
- 
+
  - main.c - functions for calling the shell and initializing the shell struct
  - shell.c - functions for running the basic shell logic
  - shell_helpers.c - functions for helping the shell run

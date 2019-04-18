@@ -42,7 +42,7 @@ void checkAndGetLine(config *build)
 			displayNewLine();
 		if (build->errorStatus)
 			exit(build->errorStatus);
-		exit(EXIT_SUCESS);
+		exit(EXIT_SUCCESS);
 
 	}
 	ptr = _strchr(build->buffer, '\n');
