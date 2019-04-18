@@ -87,7 +87,7 @@ void forkAndExecute(config *build)
 		perror("error\n");
 		freeMembers(build);
 		freeArgs(build->envList);
-		exit(0);
+		exit(1);
 	}
 	if (f1 == 0)
 	{
@@ -100,6 +100,7 @@ void forkAndExecute(config *build)
 				exit(127);
 			if (errno == EACCES)
 				exit(126);
+			exit(1);
 		}
 	} else
 	{
