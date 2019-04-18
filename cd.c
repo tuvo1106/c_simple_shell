@@ -35,8 +35,6 @@ _Bool cdToHome(config *build)
 	i = searchNode(build->env, "HOME");
 	if (i == -1)
 	{
-		str = "/root";
-		chdir(str);
 		return (true);
 	}
 	str = getNodeAtIndex(build->env, i);
