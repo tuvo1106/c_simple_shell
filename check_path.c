@@ -40,12 +40,7 @@ _Bool checkPath(config *build)
 		tok = _strtok(NULL, delim);
 		inLoop = true;
 	}
-	if (stat(buffer, &st) == 0)
-	{
-		build->fullPath = build->args[0];
-		free(copy);
-		return (true);
-	}
+	build->fullPath = build->args[0];
 	free(copy);
 	return (false);
 }
