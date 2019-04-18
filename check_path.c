@@ -58,11 +58,9 @@ _Bool checkEdgeCases(config *build)
 	copy = _strdup(build->path);
 	if (!copy)
 	{
-		return (false);
-		/*
 		build->fullPath = build->args[0];
 		free(copy);
-		return (true); */
+		return (true);
 	}
 	if (*copy == ':' && stat(build->args[0], &st) == 0)
 	{
