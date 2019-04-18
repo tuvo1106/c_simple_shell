@@ -64,12 +64,17 @@ void stripComments(char *str)
 
 	while (str[i])
 	{
+		if (i == 0 && str[i] == '#')
+		{
+			insertNullByte(str, i);
+			return;
+		}
 		if (notFirst)
 		{
 			if (str[i] == '#' && str[i - 1] == ' ')
 			{
 				insertNullByte(str, i);
-				break;
+				return;
 			}
 		}
 		i++;
