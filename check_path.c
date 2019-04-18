@@ -4,7 +4,7 @@
  * checkPath - searches $PATH for directory of command
  * @build: input build
  */
-void checkPath(config *build)
+_Bool checkPath(config *build)
 {
 	register int len;
 	static char buffer[BUFSIZE];
@@ -13,7 +13,7 @@ void checkPath(config *build)
 	_Bool inLoop = false;
 
 	if (checkEdgeCases(build))
-		return;
+		return (true);
 	copy = _strdup(build->path);
 	tok = _strtok(copy, delim);
 	while (tok)
@@ -23,7 +23,7 @@ void checkPath(config *build)
 		{
 			build->fullPath = build->args[0];
 			free(copy);
-			return;
+			return (true);
 		}
 		len = _strlen(tok) + _strlen(build->args[0]) + 2;
 		_strcat(buffer, tok);
@@ -34,14 +34,20 @@ void checkPath(config *build)
 		{
 			free(copy);
 			build->fullPath = buffer;
-			return;
+			return (true);
 		}
 		insertNullByte(buffer, 0);
 		tok = _strtok(NULL, delim);
 		inLoop = true;
 	}
-	build->fullPath = build->args[0];
+	if (stat(buffer, &st) == 0)
+	{
+		build->fullPath = build->args[0];
+		free(copy);
+		return (true);
+	}
 	free(copy);
+	return (false);
 }
 
 /**

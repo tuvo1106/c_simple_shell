@@ -137,7 +137,7 @@ void displayNewLine(void);
 void sigintHandler(int sigint);
 
 /* check_path */
-void checkPath(config *);
+_Bool checkPath(config *);
 _Bool checkEdgeCases(config *build);
 
 /* split_string */

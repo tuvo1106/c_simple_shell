@@ -13,7 +13,12 @@ void shell(config *build)
 			continue;
 		if (findBuiltIns(build) == true)
 			continue;
-		checkPath(build);
+		if (checkPath(build) == false)
+		{
+			errorHandler(build);
+			freeArgsAndBuffer(build);
+			continue;
+		}
 		forkAndExecute(build);
 	}
 }
@@ -103,7 +108,7 @@ void forkAndExecute(config *build)
 	{
 		if (execve(build->fullPath, build->args, build->envList) == -1)
 		{
-			errorHandler(build);
+			/*errorHandler(build);*/
 			freeMembers(build);
 			freeArgs(build->envList);
 			if (errno == ENOENT)
