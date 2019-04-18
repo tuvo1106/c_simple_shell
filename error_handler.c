@@ -60,6 +60,9 @@ char *getErrorMessage(void)
 		case ENOBUILTIN:
 			str = ": type help for a list of built-ins";
 			break;
+		case EACCES:
+			str = ": Permission denied";
+			break;
 		default:
 			str = ": no error number assigned";
 	}
