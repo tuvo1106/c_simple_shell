@@ -12,9 +12,9 @@
 #include <errno.h>
 #include <signal.h>
 #include <limits.h>
-#define BUFSIZE 256
 
 /* ERRORS */
+#define BUFSIZE 256
 #define ENOSTRING 1106
 #define EILLEGAL 227
 #define EWSIZE 410
