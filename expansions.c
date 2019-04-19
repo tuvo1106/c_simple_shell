@@ -18,10 +18,10 @@ void checkExpansions(config *build)
 void varExpansions(config *build)
 {
 	register int i = 0, pLen, eLen;
-	pid_t ppid = getppid();
 	char *ppidStr = itoa((unsigned int)ppid);
 	char *errStr = itoa((unsigned int)errno);
 	char *ppidCopy, *errCopy;
+	pid_t ppid = getppid();
 
 	pLen = _strlen(ppidStr);
 	eLen = _strlen(errStr);
