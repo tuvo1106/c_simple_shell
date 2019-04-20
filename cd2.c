@@ -47,9 +47,13 @@ _Bool updateCur(config *build, int index)
 	getcwd(tmp, BUFSIZE);
 	_strcat(cwd, "PWD=");
 	_strcat(cwd, tmp);
-	deleteNodeAtIndex(&build->env, index);
-	addNodeAtIndex(&build->env, index, cwd);
+	if (index > -1)
+	{
+		deleteNodeAtIndex(&build->env, index);
+		addNodeAtIndex(&build->env, index, cwd);
+	} else
+		addNodeAtIndex(&build->env, 0, cwd);
 	insertNullByte(tmp, 0);
 	insertNullByte(cwd, 0);
-	return (1);
+	return (true);
 }

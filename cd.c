@@ -107,8 +107,7 @@ _Bool updateEnviron(config *build)
 	register int i;
 
 	i = updateOld(build);
-	if (i > -1)
-		return (updateCur(build, i));
-	return (false);
+	updateCur(build, i);
+	return (true);
 }
 
