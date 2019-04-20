@@ -55,17 +55,15 @@ _Bool cdToPrevious(config *build)
 {
 	register int i;
 	char *str, *ptr;
+	char *current = NULL;
 
+	current = getcwd(current, 0);
 	i = searchNode(build->env, "OLDPWD");
 	if (i == -1)
 	{
-		i = searchNode(build->env, "PWD");
-		str = getNodeAtIndex(build->env, i);
-		ptr = _strchr(str, '=');
-		ptr++;
-		write(STDOUT_FILENO, ptr, _strlen(ptr));
+		chdir(current);
+		write(STDOUT_FILENO, current, _strlen(current));
 		displayNewLine();
-		free(str);
 		return (true);
 	}
 	str = getNodeAtIndex(build->env, i);
