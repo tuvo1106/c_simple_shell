@@ -14,8 +14,6 @@ int main(int ac, char **av)
 	signal(SIGINT, sigintHandler);
 	configInit(&build);
 	build.shellName = av[0];
-	welcome_screen_1();
-	welcome_screen_2();
 	shell(&build);
 	return (0);
 }
